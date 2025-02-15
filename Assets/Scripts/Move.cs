@@ -13,21 +13,9 @@ public class Move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        // Convert angle from degrees to radians
-        float angleRad = angleDegree * Mathf.Deg2Rad;
-
-        float x = Mathf.Cos(angleRad);
-        float y = Mathf.Sin(angleRad);
-
-        // Call this method externally to set movement direction
-    }
-
     void FixedUpdate()
     {
-        // Apply velocity to Rigidbody2D
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * moveSpeed; // Apply movement
     }
 
     public void ResetMove()
@@ -40,10 +28,10 @@ public class Move : MonoBehaviour
     {
         // Convert angle from degrees to radians
         float angleRad = angleDegree * Mathf.Deg2Rad;
-
+        
         float x = Mathf.Cos(angleRad);
         float y = Mathf.Sin(angleRad);
-
+        
         // Check direction and adjust movement accordingly
         switch (direction)
         {
