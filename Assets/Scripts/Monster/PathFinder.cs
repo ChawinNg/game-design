@@ -4,7 +4,6 @@ public class PathFinder : MonoBehaviour
 {
     public Transform player;  // Reference to the player's Transform (position)
     public Move moveScript;   // Reference to the Move script (to control movement)
-    public float speed = 2f;  // Speed of movement
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
 
     private Vector2 directionToPlayer;  // Direction vector towards player
