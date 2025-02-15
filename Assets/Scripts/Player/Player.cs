@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
-    Vector3 forward;
-    Vector3 right;
+    public Move moveScript;
+
+    // Vector3 forward;
+    // Vector3 right;
 
     void Start()
     {
@@ -14,28 +15,32 @@ public class Player : MonoBehaviour
             return;
         }
 
-        forward = Camera.main.transform.forward;
-        forward.y = 0;
-        forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+        // forward = Camera.main.transform.forward;
+        // forward.y = 0;
+        // forward = Vector3.Normalize(forward);
+        // right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
     }
+
 
     void Update()
     {
-        if (Input.anyKey)
+        moveScript.ResetMove();
+        // Example of controlling movement externally
+        if (Input.GetKey(KeyCode.W)) 
         {
-            Move();
+            moveScript.MoveInDirection("Up");
         }
-    }
-
-    void Move()
-    {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 movement = (right * direction.x + forward * direction.z) * speed * Time.deltaTime;
-        
-        if (movement != Vector3.zero)
-            transform.forward = movement.normalized;
-        
-        transform.position += movement;
+        else if (Input.GetKey(KeyCode.S)) 
+        {
+            moveScript.MoveInDirection("Down");
+        }
+        else if (Input.GetKey(KeyCode.D)) 
+        {
+            moveScript.MoveInDirection("Right");
+        }
+        else if (Input.GetKey(KeyCode.A)) 
+        {
+            moveScript.MoveInDirection("Left");
+        }
     }
 }
