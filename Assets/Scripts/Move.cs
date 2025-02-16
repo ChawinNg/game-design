@@ -1,12 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class Move : MonoBehaviour, IKnockbackable
 {
     public float moveSpeed = 2f;
     public float angleDegree = 27f; // Angle in degrees, change this as needed
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
+
+    private bool isBeingKnockback = false;
 
     void Start()
     {
@@ -15,7 +18,10 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * moveSpeed; // Apply movement
+        if (!isBeingKnockback)
+        {
+            rb.linearVelocity = moveInput * moveSpeed; // Apply movement
+        }
     }
 
     public void ResetMove()
@@ -28,10 +34,10 @@ public class Move : MonoBehaviour
     {
         // Convert angle from degrees to radians
         float angleRad = angleDegree * Mathf.Deg2Rad;
-        
+
         float x = Mathf.Cos(angleRad);
         float y = Mathf.Sin(angleRad);
-        
+
         // Check direction and adjust movement accordingly
         switch (direction)
         {
@@ -51,5 +57,16 @@ public class Move : MonoBehaviour
                 moveInput = Vector2.zero; // No movement if the direction is invalid
                 break;
         }
+    }
+
+    public IEnumerator OnTakingKnockback(Vector3 force, float second)
+    {
+        isBeingKnockback = true;
+
+        rb.AddForce(force / second);
+
+        yield return new WaitForSeconds(second);
+
+        isBeingKnockback = false;
     }
 }

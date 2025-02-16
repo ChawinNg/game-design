@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public UnityEvent OnAttack;
+
     public Move moveScript;
-    
+
     public float dashSpeedMultiplier = 3f; // Dash is 3x normal speed
     public float dashDuration = 0.2f;
     public float dashCooldown = 5f;
@@ -37,19 +40,19 @@ public class Player : MonoBehaviour
         moveScript.ResetMove();
 
         // Example of controlling movement externally
-        if (Input.GetKey(KeyCode.W)) 
+        if (Input.GetKey(KeyCode.W))
         {
             moveScript.MoveInDirection("Up");
         }
-        else if (Input.GetKey(KeyCode.S)) 
+        else if (Input.GetKey(KeyCode.S))
         {
             moveScript.MoveInDirection("Down");
         }
-        else if (Input.GetKey(KeyCode.D)) 
+        else if (Input.GetKey(KeyCode.D))
         {
             moveScript.MoveInDirection("Right");
         }
-        else if (Input.GetKey(KeyCode.A)) 
+        else if (Input.GetKey(KeyCode.A))
         {
             moveScript.MoveInDirection("Left");
         }
@@ -115,6 +118,7 @@ public class Player : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attack triggered!");
+        OnAttack?.Invoke();
     }
 
     void UseWeaponSkill()
