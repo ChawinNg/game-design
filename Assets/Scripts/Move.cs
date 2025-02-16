@@ -4,8 +4,7 @@ using UnityEngine;
 public class Move : MonoBehaviour, IKnockbackable
 {
     public float moveSpeed = 2f;
-    public float angleDegree = 27f; // Angle in degrees, change this as needed
-
+    
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
@@ -20,7 +19,7 @@ public class Move : MonoBehaviour, IKnockbackable
     {
         if (!isBeingKnockback)
         {
-            rb.linearVelocity = moveInput * moveSpeed; // Apply movement
+            rb.linearVelocity = moveInput.normalized * moveSpeed; // Apply movement
         }
     }
 
@@ -30,33 +29,14 @@ public class Move : MonoBehaviour, IKnockbackable
     }
 
     // Public method that other objects can call to move in a specific direction
-    public void MoveInDirection(string direction)
+    public void MoveInDirection(bool up, bool down, bool left, bool right)
     {
-        // Convert angle from degrees to radians
-        float angleRad = angleDegree * Mathf.Deg2Rad;
-
-        float x = Mathf.Cos(angleRad);
-        float y = Mathf.Sin(angleRad);
-
-        // Check direction and adjust movement accordingly
-        switch (direction)
-        {
-            case "Up":
-                moveInput = new Vector2(x, y);  // NE
-                break;
-            case "Down":
-                moveInput = new Vector2(-x, -y); // SW
-                break;
-            case "Right":
-                moveInput = new Vector2(x, -y);  // SE
-                break;
-            case "Left":
-                moveInput = new Vector2(-x, y);  // NW
-                break;
-            default:
-                moveInput = Vector2.zero; // No movement if the direction is invalid
-                break;
-        }
+        moveInput = Vector2.zero;
+        
+        if (up) moveInput += Vector2.up;
+        if (down) moveInput += Vector2.down;
+        if (right) moveInput += Vector2.right;
+        if (left) moveInput += Vector2.left;
     }
 
     public IEnumerator OnTakingKnockback(Vector3 force, float second)

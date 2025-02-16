@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public UnityEvent OnAttack;
-
     public Move moveScript;
 
     public float dashSpeedMultiplier = 3f; // Dash is 3x normal speed
@@ -39,23 +38,14 @@ public class Player : MonoBehaviour
     {
         moveScript.ResetMove();
 
-        // Example of controlling movement externally
-        if (Input.GetKey(KeyCode.W))
-        {
-            moveScript.MoveInDirection("Up");
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            moveScript.MoveInDirection("Down");
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            moveScript.MoveInDirection("Right");
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            moveScript.MoveInDirection("Left");
-        }
+        // Get movement input for all directions
+        bool moveUp = Input.GetKey(KeyCode.W);
+        bool moveDown = Input.GetKey(KeyCode.S);
+        bool moveRight = Input.GetKey(KeyCode.D);
+        bool moveLeft = Input.GetKey(KeyCode.A);
+
+        // Move in the determined direction (supports diagonal movement)
+        moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
 
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {

@@ -33,34 +33,21 @@ public class PathFinder : MonoBehaviour
         // Check the distance between the object and the player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // If the object is too close to the player, stop moving
+        // If too close, stop moving and trigger attack
         if (distanceToPlayer < stopDistance)
         {
-            moveScript.ResetMove(); // Stop the movement if too close
+            moveScript.ResetMove(); // Stop movement
             animator.SetTrigger("Slash");
-
             return;
         }
 
-        // Get the angle between the object and the player
-        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+        // Determine movement direction
+        bool moveUp = directionToPlayer.y > 0.1f;
+        bool moveDown = directionToPlayer.y < -0.1f;
+        bool moveRight = directionToPlayer.x > 0.1f;
+        bool moveLeft = directionToPlayer.x < -0.1f;
 
-        // Determine the direction based on the angle
-        if (angle >= -45f && angle < 45f)
-        {
-            moveScript.MoveInDirection("Right");  // Move right
-        }
-        else if (angle >= 45f && angle < 135f)
-        {
-            moveScript.MoveInDirection("Up");  // Move up
-        }
-        else if (angle >= 135f || angle < -135f)
-        {
-            moveScript.MoveInDirection("Left");  // Move left
-        }
-        else
-        {
-            moveScript.MoveInDirection("Down");  // Move down
-        }
+        // Move in the determined direction (supports diagonal movement)
+        moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
     }
 }
