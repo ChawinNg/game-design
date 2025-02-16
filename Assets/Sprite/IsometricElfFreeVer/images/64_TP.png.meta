@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: e56e7796d70835e41a77607cfc555dd1
-AssetOrigin:
-  serializedVersion: 1
-  productId: 244807
-  packageName: ISOMETRIC_Elf_fighter
-  packageVersion: 1.0
-  assetPath: Assets/IsometricElfFreeVer/images/64_Fild.png
-  uploadId: 569244
+guid: 4a326ca23e0ce6a43adf48813344431d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
