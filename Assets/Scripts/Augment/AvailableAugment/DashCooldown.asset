@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54b4edb0d8ee1a48b92726bc67c5710, type: 3}
   m_Name: DashCooldown
   m_EditorClassIdentifier: 
-  augmentName: 
+  augmentName: Decrease dash cooldown
   description: 
   healthModifier: 0
   damageModifier: 0
-  dashCooldownModifier: 0
+  dashCooldownModifier: 2
