@@ -1,17 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class AugmentSelection : MonoBehaviour
 {
     public GameObject augmentButtonPrefab;
     public Transform augmentContainer;
+
+    public GameObject AugmentSelectionUI; 
     public List<AugmentData> availableAugments;
     public GameObject player;
     void Start()
     {
         PopulateAugments();
+        AugmentSelectionUI.SetActive(false);
     }
 
     void PopulateAugments()
@@ -29,7 +33,8 @@ public class AugmentSelection : MonoBehaviour
 
     void SelectAugment(AugmentData augment)
     {
-        Debug.Log("Selected: " + augment.augmentName);
         augment.ApplyEffect();
+        Time.timeScale = 1f; 
+        AugmentSelectionUI.SetActive(false);
     }
 }

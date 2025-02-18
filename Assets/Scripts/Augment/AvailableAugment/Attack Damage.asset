@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: Attack Damage
   description: Increase attack damage by 10%
+  healthModifier: 0
+  damageModifier: 1.1
+  dashCooldownModifier: 0
+  armorModifier: 0

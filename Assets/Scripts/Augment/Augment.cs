@@ -5,9 +5,11 @@ public class AugmentData : ScriptableObject
 {
     public string augmentName;
     public string description;
-    public int healthModifier; // For health-related changes
+    public int healthModifier;
     public float damageModifier;
     public float dashCooldownModifier;
+    public int armorModifier;
+    public float attackSpeedModifier;
      public void ApplyEffect()
     {
         Player player = FindFirstObjectByType<Player>();
@@ -22,6 +24,11 @@ public class AugmentData : ScriptableObject
             if (dashCooldownModifier != 0)
             {
                 playerScript.dashCooldown -= dashCooldownModifier;
+            }
+
+            if (armorModifier != 0)
+            {
+                playerScript.armor += armorModifier;
             }
 
             Debug.Log($"Applied {augmentName}, Health: {healthModifier}, Dash Cooldown: {dashCooldownModifier}");

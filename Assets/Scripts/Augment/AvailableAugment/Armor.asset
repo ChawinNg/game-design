@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b54b4edb0d8ee1a48b92726bc67c5710, type: 3}
-  m_Name: DashCooldown
+  m_Name: Armor
   m_EditorClassIdentifier: 
-  augmentName: Decrease dash cooldown
-  description: 
-  healthModifier: 0
+  augmentName: Increase Armor
+  description: Increase armor
+  healthModifier: 1
   damageModifier: 0
-  dashCooldownModifier: 1
-  armorModifier: 0
+  dashCooldownModifier: 0
+  armorModifier: 5
+  attackSpeedModifier: 0
