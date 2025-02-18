@@ -10,9 +10,12 @@ public class Move : MonoBehaviour, IKnockbackable
 
     private bool isBeingKnockback = false;
 
+    Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -26,12 +29,14 @@ public class Move : MonoBehaviour, IKnockbackable
     public void ResetMove()
     {
         moveInput = Vector2.zero;
+        animator.SetBool("Walk", false);
     }
 
     // Public method that other objects can call to move in a specific direction
     public void MoveInDirection(bool up, bool down, bool left, bool right)
     {
         moveInput = Vector2.zero;
+        animator.SetBool("Walk", true);
         
         if (up) moveInput += Vector2.up;
         if (down) moveInput += Vector2.down;
