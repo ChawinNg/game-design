@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public UnityEvent OnAttack;
     public Move moveScript;
+    Animator animator;
 
     public float dashSpeedMultiplier = 3f; // Dash is 3x normal speed
     public float dashDuration = 0.2f;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
         if (playerCollider == null)
         {
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            animator.SetTrigger("Slash");
             Attack();
         }
 
