@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/FightMap_Grass_1.unity
     guid: 8a102f3160e4c9544a7f1d450f9fb411
   - enabled: 1
-    path: Assets/Scenes/FightMap_Indoor_1.unity
+    path: Assets/Scenes/BossMap_1.unity
     guid: c0c88a7f289571541ab40c3c4e32db3e
+  - enabled: 1
+    path: Assets/Scenes/FightMap_Grass_3.unity
+    guid: 646f0bf8b4b45834a9b483a199cb247c
+  - enabled: 1
+    path: Assets/Scenes/FightMap_Grass_2.unity
+    guid: 123ae7ed8bd74c94bb5090035a1a51e2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
