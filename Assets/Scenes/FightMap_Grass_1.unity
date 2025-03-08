@@ -5314,6 +5314,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: m_TagString
+      value: HostileEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2989262492310327134, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5625,6 +5629,10 @@ PrefabInstance:
     - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: m_TagString
+      value: HostileEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2989262492310327134, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12115,6 +12123,7 @@ MonoBehaviour:
   hitbox: {fileID: 907283277}
   weapon: {fileID: 907283275}
   primaryAttack: {fileID: 1992033213}
+  secondaryAttack: {fileID: 0}
 --- !u!4 &1241767120
 Transform:
   m_ObjectHideFlags: 0
@@ -12522,6 +12531,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: m_TagString
+      value: HostileEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2989262492310327133, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -12856,6 +12869,10 @@ PrefabInstance:
     - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: m_TagString
+      value: HostileEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2989262492310327134, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_LocalPosition.x

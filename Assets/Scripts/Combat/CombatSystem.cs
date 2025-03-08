@@ -18,8 +18,8 @@ public class CombatSystem : MonoBehaviour
         currentWeapon.AimToDirection(mouseVec);
     }
 
-    public void PerformPrimaryAttack()
+    public void PerformPrimaryAttack(AttackType attackType)
     {
-        currentWeapon.PerformAttack(AttackType.Primary);
+        currentWeapon.PerformAttack(attackType);
     }
 }

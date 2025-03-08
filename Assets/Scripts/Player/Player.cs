@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent OnAttack;
+    public UnityEvent<AttackType> OnAttack;
     public Move moveScript;
     Animator animator;
 
@@ -111,12 +111,13 @@ public class Player : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attack triggered!");
-        OnAttack?.Invoke();
+        OnAttack?.Invoke(AttackType.Primary);
     }
 
     void UseWeaponSkill()
     {
         Debug.Log("Weapon skill activated!");
+        OnAttack?.Invoke(AttackType.Secondary);
     }
 
     public void TakeDamage(int damage)
