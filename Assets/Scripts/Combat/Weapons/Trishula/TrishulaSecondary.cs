@@ -16,7 +16,6 @@ public class TrishulaSecondary : AttackBase
     {
         aimmingDirection = direction;
     }
-
     protected override void PerformAttack()
     {
         GameObject obj = Instantiate(Throwable);

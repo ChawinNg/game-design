@@ -21,7 +21,6 @@ public class TrishulaPrimary : AttackBase
         hitboxTransform = hitbox.GetComponent<Transform>();
         attackRange = hitboxTransform.localPosition.magnitude;
     }
-
     public override void UpdateAimDirection(Vector3 direction)
     {
         aimmingDirection = direction;

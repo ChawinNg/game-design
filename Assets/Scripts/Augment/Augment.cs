@@ -15,8 +15,8 @@ public class AugmentData : ScriptableObject
     {
         Player player = FindFirstObjectByType<Player>();
         Player playerScript = player.GetComponent<Player>();
-        Weapon currentWeapon = player.GetComponent<CombatSystem>().GetComponent<Weapon>();
         Move moveScript = player.moveScript;
+        AugmentSelection augementSelection = FindFirstObjectByType<AugmentSelection>();
         if (playerScript != null)
         {
             if (healthModifier != 0) 
@@ -39,7 +39,7 @@ public class AugmentData : ScriptableObject
             }
 
             if (damageModifier != 0) {
-                // currentWeapon.primaryAttack.baseDamage *= damageModifier;
+                augementSelection.damageModifier += damageModifier;
             }
 
             Debug.Log($"Applied {augmentName}, Health: {healthModifier}, Dash Cooldown: {dashCooldownModifier}");
