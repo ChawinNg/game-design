@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
 public class AugmentSelection : MonoBehaviour
@@ -11,7 +11,6 @@ public class AugmentSelection : MonoBehaviour
 
     public GameObject AugmentSelectionUI; 
     public List<AugmentData> availableAugments;
-    public GameObject player;
     void Start()
     {
         PopulateAugments();
@@ -20,7 +19,12 @@ public class AugmentSelection : MonoBehaviour
 
     void PopulateAugments()
     {
-        foreach (var augment in availableAugments)
+        List<AugmentData> chosenAugments = availableAugments.OrderBy(x => Random.value).Take(3).ToList();
+        foreach (Transform child in augmentContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (var augment in chosenAugments)
         {
             GameObject buttonObj = Instantiate(augmentButtonPrefab, augmentContainer);
             buttonObj.GetComponentInChildren<TMP_Text>().text = augment.augmentName;
