@@ -20,9 +20,13 @@ public class ThrowableTrishula : MonoBehaviour
     {
         GameObject[] objects = Hitbox.GetCollidingObjects();
 
+        bool isHit = false;
+
         foreach (GameObject obj in objects)
         {
             if (!obj.CompareTag("HostileEnemy")) continue;
+
+            isHit = true;
 
             obj.GetComponent<IDamageable>()?.OnTakingDamage(baseDamage);
             IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();
@@ -32,7 +36,7 @@ public class ThrowableTrishula : MonoBehaviour
             }
         }
 
-        if (objects.Length > 0)
+        if (isHit)
         {
             Destroy(gameObject);
         }

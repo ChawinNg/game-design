@@ -15,10 +15,10 @@ public class CombatSystem : MonoBehaviour
 
         Vector3 mouseVec = Projection.ProjectToOrthogonalSpace((mousePos - playerTransform.position).normalized);
 
-        // currentWeapon.AimToDirection(mouseVec); 
+        currentWeapon.AimToDirection(mouseVec);
     }
 
-    public void PerformPrimaryAttack(AttackType attackType)
+    public void PerformAttack(AttackType attackType)
     {
         currentWeapon.PerformAttack(attackType);
     }

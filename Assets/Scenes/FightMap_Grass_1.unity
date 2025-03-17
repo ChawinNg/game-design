@@ -7427,7 +7427,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 442888897}
         m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
-        m_MethodName: PerformPrimaryAttack
+        m_MethodName: PerformAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

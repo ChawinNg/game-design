@@ -17,7 +17,6 @@ public abstract class AttackBase : MonoBehaviour
         StartCoroutine(CooldownRoutine());
     }
 
-
     private IEnumerator CooldownRoutine()
     {
         onCooldown = true;
