@@ -11,6 +11,7 @@ public class TrishulaPrimary : AttackBase
     public float baseDamage = 10f;
     public float knockbackForce = 10f;
     public float knockbackTime = 0.25f;
+    public string attackabletag ="HostileEnemy";
 
     private float attackRange;
 
@@ -33,7 +34,7 @@ public class TrishulaPrimary : AttackBase
 
         foreach (GameObject obj in objects)
         {
-            if (!obj.CompareTag("HostileEnemy")) continue;
+            if (!obj.CompareTag(attackabletag)) continue;
 
             obj.GetComponent<IDamageable>()?.OnTakingDamage(baseDamage);
             IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();

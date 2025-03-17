@@ -5,7 +5,7 @@ public class AugmentData : ScriptableObject
 {
     public string augmentName;
     public string description;
-    public int healthModifier;
+    public float healthModifier;
     public float damageModifier;
     public float moveSpeedModifer;
     public float dashCooldownModifier;
@@ -21,7 +21,7 @@ public class AugmentData : ScriptableObject
         {
             if (healthModifier != 0) 
             {
-                playerScript.TakeDamage(-healthModifier);
+                playerScript.OnTakingDamage(-healthModifier);
             }
 
             if (dashCooldownModifier != 0)

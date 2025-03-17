@@ -1,4 +1,7 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PathFinder : MonoBehaviour
 {
@@ -8,6 +11,8 @@ public class PathFinder : MonoBehaviour
 
     private Vector2 directionToPlayer;  // Direction vector towards player
     Animator animator;
+    public UnityEvent<AttackType> OnAttack;
+
 
     void Start()
     {
@@ -39,6 +44,7 @@ public class PathFinder : MonoBehaviour
         {
             moveScript.ResetMove(); // Stop movement
             animator.SetTrigger("Slash");
+            OnAttack?.Invoke(AttackType.Primary);
             return;
         }
 
@@ -47,8 +53,6 @@ public class PathFinder : MonoBehaviour
         bool moveDown = directionToPlayer.y < -0.1f;
         bool moveRight = directionToPlayer.x > 0.1f;
         bool moveLeft = directionToPlayer.x < -0.1f;
-        Debug.Log(moveUp);
-
 
         // Move in the determined direction (supports diagonal movement)
         moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);

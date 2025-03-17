@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     public UnityEvent<AttackType> OnAttack;
     public Move moveScript;
@@ -15,17 +15,20 @@ public class Player : MonoBehaviour
     private bool canDash = true;
     private float dashCooldownTimer = 0f;
 
-    public int health = 100;
+    public float maxHealth = 100f;
+
+    private float health ;
     public int armor = 30;
 
     private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
-    public Text cooldownText;
-    public Text healthText;
-    public Text armorText;
+    // public Text cooldownText;
+    // public Text healthText;
+    // public Text armorText;
 
     void Start()
     {
+        health = maxHealth;
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         if (playerCollider == null)
@@ -68,11 +71,11 @@ public class Player : MonoBehaviour
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
-            cooldownText.text = "Dash Cooldown: " + Mathf.Ceil(dashCooldownTimer).ToString() + "s";
+            // cooldownText.text = "Dash Cooldown: " + Mathf.Ceil(dashCooldownTimer).ToString() + "s";
         }
         else
         {
-            cooldownText.text = "Dash Ready!";
+            // cooldownText.text = "Dash Ready!";
         }
 
         UpdateUI();
@@ -104,8 +107,8 @@ public class Player : MonoBehaviour
 
     void UpdateUI()
     {
-        healthText.text = "Health: " + health.ToString();
-        armorText.text = "Armor: " + armor.ToString();
+        // healthText.text = "Health: " + health.ToString();
+        // armorText.text = "Armor: " + armor.ToString();
     }
 
     void Attack()
@@ -120,12 +123,15 @@ public class Player : MonoBehaviour
         OnAttack?.Invoke(AttackType.Secondary);
     }
 
-    public void TakeDamage(int damage)
+    public void OnTakingDamage(float amount)
     {
-        health -= damage;
-        if (health < 0) health = 0;
+        health -= amount;
         UpdateUI();
         StartCoroutine(FlashRed());
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator FlashRed()
