@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public float maxHealth = 100f;
 
-    private float health ;
+    public float health;
     public int armor = 30;
 
     private BoxCollider2D playerCollider;
@@ -25,6 +25,18 @@ public class Player : MonoBehaviour, IDamageable
     // public Text cooldownText;
     // public Text healthText;
     // public Text armorText;
+
+    void Awake()
+    {
+        if (GameObject.FindWithTag("Player") != null && GameObject.FindWithTag("Player") != gameObject)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     void Start()
     {
@@ -113,7 +125,7 @@ public class Player : MonoBehaviour, IDamageable
 
     void Attack()
     {
-        Debug.Log("Attack triggered!");
+        Debug.Log("Attack triggered!" + " Health: " + health + " Armor: " + armor + " Dash Cooldown: " + dashCooldown);
         OnAttack?.Invoke(AttackType.Primary);
     }
 
