@@ -5796,6 +5796,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1029358045830359463, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167382561516533354, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1097983902}
     - target: {fileID: 4593255768948569558, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
       propertyPath: m_Name
       value: elf_mon (6)
@@ -7446,6 +7454,11 @@ MonoBehaviour:
   cooldownText: {fileID: 1797017732}
   healthText: {fileID: 1294913329}
   armorText: {fileID: 1242569831}
+--- !u!4 &1097983902 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2989262492310327134, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+  m_PrefabInstance: {fileID: 1097983890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1218253687
 GameObject:
   m_ObjectHideFlags: 0

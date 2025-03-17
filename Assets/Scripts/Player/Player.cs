@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public int health = 100;
     public int armor = 30;
 
-    private CapsuleCollider2D playerCollider;
+    private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
     public Text cooldownText;
     public Text healthText;
@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         if (playerCollider == null)
         {
-            Debug.LogError("No CapsuleCollider2D found on the Player!");
+            Debug.LogError("No BoxCollider2D found on the Player!");
         }
 
         playerRenderer = GetComponent<Renderer>();

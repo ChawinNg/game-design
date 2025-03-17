@@ -17,6 +17,7 @@ public class PathFinder : MonoBehaviour
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").transform;
+            Debug.Log("player found!");
         }
 
         if (moveScript == null)
@@ -46,6 +47,8 @@ public class PathFinder : MonoBehaviour
         bool moveDown = directionToPlayer.y < -0.1f;
         bool moveRight = directionToPlayer.x > 0.1f;
         bool moveLeft = directionToPlayer.x < -0.1f;
+        Debug.Log(moveUp);
+
 
         // Move in the determined direction (supports diagonal movement)
         moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);

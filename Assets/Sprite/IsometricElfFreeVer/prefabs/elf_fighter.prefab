@@ -62,8 +62,7 @@ GameObject:
   - component: {fileID: 2989262492310327122}
   - component: {fileID: 6912715101802232726}
   - component: {fileID: 3060800453956762900}
-  - component: {fileID: 7105080892294380643}
-  - component: {fileID: 2787761594916101497}
+  - component: {fileID: 4146257573568893270}
   m_Layer: 0
   m_Name: elf_fighter
   m_TagString: Player
@@ -260,8 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
---- !u!70 &7105080892294380643
-CapsuleCollider2D:
+--- !u!61 &4146257573568893270
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -294,54 +293,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.016249716, y: 0}
-  m_Size: {x: 0.24582732, y: 0.5001}
-  m_Direction: 1
---- !u!66 &2787761594916101497
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989262492310327123}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.34, y: 0.1}
   m_EdgeRadius: 0
-  m_ColliderPaths: []
-  m_CompositePaths:
-    m_Paths: []
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
-  m_UseDelaunayMesh: 0
-  m_CompositeGameObject: {fileID: 2989262492310327123}
 --- !u!1 &5268678021008020008
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,9 +351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 3
   Throwable: {fileID: 5422448823268907183, guid: dac702172338b4a4ebe74cfe93bb1181, type: 3}
-  baseDamage: 10
-  knockbackForce: 10
-  knockbackTime: 0.25
   ThrowableSpeed: 7
 --- !u!1 &5715765858975492974
 GameObject:
