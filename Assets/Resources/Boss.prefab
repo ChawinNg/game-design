@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 5709373413573504430}
   - component: {fileID: -4919416624383699716}
   - component: {fileID: 2918887222319323170}
-  - component: {fileID: 8630535914989346051}
   m_Layer: 0
   m_Name: Boss
   m_TagString: HostileEnemy
@@ -175,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 2762074996817724240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96, y: -0.16, z: 0}
+  m_LocalPosition: {x: -1.31, y: 0.35, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -217,17 +216,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4, y: 0.93}
+    pivot: {x: 0.77, y: 0.34}
+    oldSize: {x: 0.21, y: 0.08}
     newSize: {x: 1.4, y: 0.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3, y: 0.1}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!50 &5709373413573504430
 Rigidbody2D:
@@ -271,6 +270,7 @@ MonoBehaviour:
   moveScript: {fileID: 2918887222319323170}
   stopDistance: 1
   attackInterval: 3
+  animator: {fileID: 60956738337191518}
   OnAttack:
     m_PersistentCalls:
       m_Calls:
@@ -301,28 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
---- !u!95 &8630535914989346051
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762074996817724240}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ccee253ff083e9e45ac8d4d553de6318, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 1
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  animator: {fileID: 60956738337191518}
 --- !u!1 &5955595319510812116
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 5955595319510812116}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.445, y: 0.048, z: 0}
+  m_LocalPosition: {x: -0.368, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,7 +370,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!114 &7380748867366824401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2772097675032270212}
   - component: {fileID: 7362311627613563753}
+  - component: {fileID: 60956738337191518}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -480,7 +460,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 4072241969498346569, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+  m_Sprite: {fileID: 899130107254062015, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -491,6 +471,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &60956738337191518
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6532375371776911554}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccee253ff083e9e45ac8d4d553de6318, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8301092151516580482
 GameObject:
   m_ObjectHideFlags: 0

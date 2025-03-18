@@ -10,12 +10,15 @@ public class Move : MonoBehaviour, IKnockbackable
 
     private bool isBeingKnockback = false;
 
-    Animator animator;
+    public Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     void FixedUpdate()

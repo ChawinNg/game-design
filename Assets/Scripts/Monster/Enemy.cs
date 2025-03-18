@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public Move moveScript;   // Reference to the Move script (to control movement)
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
     public float attackInterval = 3f;
-    Animator animator;
+    public Animator animator;
     public UnityEvent<AttackType> OnAttack;
 
     public float maxHealth = 100f;
@@ -22,7 +22,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
         health = maxHealth;
         if (enemyRenderer == null)
         {
