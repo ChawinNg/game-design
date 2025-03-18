@@ -6,6 +6,7 @@ public class Player : MonoBehaviour, IDamageable
 {
     public UnityEvent<AttackType> OnAttack;
     public Move moveScript;
+
     Animator animator;
 
     public float dashSpeedMultiplier = 3f; // Dash is 3x normal speed
@@ -48,8 +49,34 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         playerRenderer = GetComponent<Renderer>();
+
+         if (AugmentStore.Instance != null)
+        {
+            AugmentStore.Instance.OnStatChanged += UpdateStat;
+            UpdateStat(nameof(AugmentStore.DamageModifier), AugmentStore.Instance.DamageModifier);
+        }
     }
 
+private void UpdateStat(string statName, float value)
+    {
+        switch (statName)
+        {
+            case nameof(AugmentStore.HealthModifier):
+                maxHealth = 100f + value;
+                Debug.Log("Updated Health: " + maxHealth);
+                break;
+
+            case nameof(AugmentStore.MoveSpeedModifier):
+                moveScript.moveSpeed = 2f + value;
+                Debug.Log("Updated Move Speed: " + moveScript.moveSpeed);
+                break;
+
+            case nameof(AugmentStore.ArmorModifier):
+                armor = 10 + (int)value;
+                Debug.Log("Updated Armor: " + armor);
+                break;
+        }
+    }
     void Update()
     {
         

@@ -46,9 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentButtonPrefab: {fileID: 8664227655569396123, guid: f0dda5fb082c83b41a39e1699d456e90, type: 3}
   augmentContainer: {fileID: 0}
+  AugmentSelectionUI: {fileID: 0}
   availableAugments:
   - {fileID: 11400000, guid: c528d4dd01656ad4495d34bba489c883, type: 2}
   - {fileID: 11400000, guid: eb8f19ba4cd7ce543bfde6b3b7739625, type: 2}
   - {fileID: 11400000, guid: 21c6810375a0807498daeae5c8d84117, type: 2}
   - {fileID: 11400000, guid: a7f3a777f68f9874f91d1235c537f9b3, type: 2}
-  player: {fileID: 0}
+  - {fileID: 11400000, guid: d90d7b6896820104297624207168a735, type: 2}
+  damageModifier: 1

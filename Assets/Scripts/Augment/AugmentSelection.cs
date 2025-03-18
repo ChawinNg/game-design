@@ -11,7 +11,7 @@ public class AugmentSelection : MonoBehaviour
 
     public GameObject AugmentSelectionUI; 
     public List<AugmentData> availableAugments;
-    public float damageModifier = 1;
+    
     void Start()
     {
         PopulateAugments();

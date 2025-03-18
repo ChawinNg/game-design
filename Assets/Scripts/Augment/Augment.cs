@@ -15,31 +15,30 @@ public class AugmentData : ScriptableObject
     {
         Player player = FindFirstObjectByType<Player>();
         Player playerScript = player.GetComponent<Player>();
-        Move moveScript = player.moveScript;
-        AugmentSelection augementSelection = FindFirstObjectByType<AugmentSelection>();
+
         if (playerScript != null)
         {
             if (healthModifier != 0) 
             {
-                playerScript.OnTakingDamage(-healthModifier);
+                AugmentStore.Instance.HealthModifier += healthModifier;;
             }
 
             if (dashCooldownModifier != 0)
             {
-                playerScript.dashCooldown -= dashCooldownModifier;
+                AugmentStore.Instance.DashCooldownModifier -= dashCooldownModifier;
             }
 
             if (armorModifier != 0)
             {
-                playerScript.armor += armorModifier;
+                AugmentStore.Instance.ArmorModifier += armorModifier;
             }
 
             if (moveSpeedModifer != 0) {
-                moveScript.moveSpeed *= moveSpeedModifer;
+                AugmentStore.Instance.MoveSpeedModifier *= moveSpeedModifer;
             }
 
             if (damageModifier != 0) {
-                augementSelection.damageModifier += damageModifier;
+                AugmentStore.Instance.DamageModifier += damageModifier;
             }
 
             Debug.Log($"Applied {augmentName}, Health: {healthModifier}, Dash Cooldown: {dashCooldownModifier}");

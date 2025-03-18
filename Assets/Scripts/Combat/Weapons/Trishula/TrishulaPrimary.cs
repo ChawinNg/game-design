@@ -21,7 +21,28 @@ public class TrishulaPrimary : AttackBase
     {
         hitboxTransform = hitbox.GetComponent<Transform>();
         attackRange = hitboxTransform.localPosition.magnitude;
+
+        if (AugmentStore.Instance != null)
+        {
+            AugmentStore.Instance.OnStatChanged += UpdateStat;
+            UpdateStat(nameof(AugmentStore.DamageModifier), AugmentStore.Instance.DamageModifier);
+        }
     }
+    private void OnDestroy()
+    {
+        if (AugmentStore.Instance != null)
+        {
+            AugmentStore.Instance.OnStatChanged -= UpdateStat;
+        }
+    }
+private void UpdateStat(string statName, float value)
+{
+    if (statName == nameof(AugmentStore.DamageModifier))
+    {
+        baseDamage = 10f + 10f * value;
+        Debug.Log("Updated Base Damage: " + baseDamage);
+    }
+}
     public override void UpdateAimDirection(Vector3 direction)
     {
         aimmingDirection = direction;
