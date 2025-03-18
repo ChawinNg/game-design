@@ -25,6 +25,7 @@ public class MonsterCombatSystem : MonoBehaviour
 
     public void PerformAttack(AttackType attackType)
     {
+        Debug.Log("attacking!");
         currentWeapon.PerformAttack(attackType);
     }
 }

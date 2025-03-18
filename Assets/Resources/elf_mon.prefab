@@ -299,6 +299,8 @@ MonoBehaviour:
   player: {fileID: 0}
   moveScript: {fileID: 9113329084535439921}
   stopDistance: 0.5
+  attackInterval: 2
+  animator: {fileID: 2296836262674418761}
   OnAttack:
     m_PersistentCalls:
       m_Calls:

@@ -29,6 +29,7 @@ public class Move : MonoBehaviour, IKnockbackable
     public void ResetMove()
     {
         moveInput = Vector2.zero;
+        
         animator.SetBool("Walk", false);
     }
 
@@ -36,12 +37,53 @@ public class Move : MonoBehaviour, IKnockbackable
     public void MoveInDirection(bool up, bool down, bool left, bool right)
     {
         moveInput = Vector2.zero;
-        animator.SetBool("Walk", true);
         
-        if (up) moveInput += Vector2.up;
-        if (down) moveInput += Vector2.down;
-        if (right) moveInput += Vector2.right;
-        if (left) moveInput += Vector2.left;
+       
+        if (right)
+        {
+            animator.SetFloat("x", 1f);
+            animator.SetFloat("y", 0f);
+            animator.SetBool("Walk", true);
+            moveInput += Vector2.right;
+            
+            if (up) 
+            {
+                moveInput += Vector2.up;
+            }
+            if (down){
+                moveInput += Vector2.down;
+            } 
+        } 
+        else if (left)
+        {
+            animator.SetFloat("x", -1f);
+            animator.SetFloat("y", 0f);
+            animator.SetBool("Walk", true);
+            moveInput += Vector2.left;
+            if (up) 
+            {
+                moveInput += Vector2.up;
+            }
+            if (down){
+                moveInput += Vector2.down;
+            } 
+        } 
+        else
+        {
+            animator.SetFloat("x", 0f);
+
+            if (up) 
+            {
+                animator.SetFloat("y", 1f);
+                moveInput += Vector2.up;
+                animator.SetBool("Walk", true);
+            }
+            if (down){
+                animator.SetFloat("y", -1f);
+                moveInput += Vector2.down;
+                animator.SetBool("Walk", true);
+            } 
+        }
     }
 
     public IEnumerator OnTakingKnockback(Vector3 force, float second)

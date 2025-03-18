@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class PathFinder : MonoBehaviour
 {
-    public Transform player;  // Reference to the player's Transform (position)
     public Move moveScript;   // Reference to the Move script (to control movement)
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
-
-    private Vector2 directionToPlayer;  // Direction vector towards player
-    Animator animator;
+    public float attackInterval = 3f;
+    public Animator animator;
     public UnityEvent<AttackType> OnAttack;
 
-
+    private Vector2 directionToPlayer;  // Direction vector towards player
+    private Transform player;  // Reference to the player's Transform (position)
+    private float lastAttackTime = 0f;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -38,13 +38,16 @@ public class PathFinder : MonoBehaviour
         // Check the distance between the object and the player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // If too close, stop moving and trigger attack
         if (distanceToPlayer < stopDistance)
         {
             moveScript.ResetMove(); // Stop movement
-            animator.SetTrigger("Slash");
-            OnAttack?.Invoke(AttackType.Primary);
-            return;
+
+            if (Time.time - lastAttackTime >= attackInterval)
+            {
+                animator.SetTrigger("Slash");
+                OnAttack?.Invoke(AttackType.Primary);
+                lastAttackTime = Time.time; // Update last attack time
+            }
         }
 
         // Determine movement direction
