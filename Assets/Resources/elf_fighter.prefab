@@ -59,11 +59,9 @@ GameObject:
   - component: {fileID: 2989262492310327135}
   - component: {fileID: 2989262492310327132}
   - component: {fileID: 2989262492310327133}
-  - component: {fileID: 2989262492310327122}
   - component: {fileID: 6912715101802232726}
   - component: {fileID: 3060800453956762900}
   - component: {fileID: 4146257573568893270}
-  - component: {fileID: 1454319005687907927}
   m_Layer: 0
   m_Name: elf_fighter
   m_TagString: Player
@@ -192,25 +190,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &2989262492310327122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989262492310327123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fcaf2ea21c8918408c5e15ca19baee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItenPoint: {fileID: 0}
-  ShotPoint: {fileID: 0}
-  ItemPrefab: {fileID: 0}
-  ThrowPrefab: {fileID: 0}
-  BowPrefab: {fileID: 0}
-  moveSpeed: 3
-  shotPointTransform: {fileID: 0}
 --- !u!114 &6912715101802232726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,19 +283,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.34, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &1454319005687907927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989262492310327123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7392955375647e6498d4c08f0cc11a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!1 &5268678021008020008
 GameObject:
   m_ObjectHideFlags: 0

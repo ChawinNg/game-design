@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class PathFinder : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public Move moveScript;   // Reference to the Move script (to control movement)
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
@@ -11,13 +11,20 @@ public class PathFinder : MonoBehaviour
     public Animator animator;
     public UnityEvent<AttackType> OnAttack;
 
+    public float maxHealth = 100f;
+
+    private float health;
+
     private Vector2 directionToPlayer;  // Direction vector towards player
     private Transform player;  // Reference to the player's Transform (position)
     private float lastAttackTime = 0f;
+    private Renderer enemyRenderer;
+
     void Start()
     {
         animator = GetComponent<Animator>();
-
+        health = maxHealth;
+        enemyRenderer = GetComponent<Renderer>();
         // Optionally, get references dynamically if not set in Inspector
         if (player == null)
         {
@@ -58,5 +65,22 @@ public class PathFinder : MonoBehaviour
 
         // Move in the determined direction (supports diagonal movement)
         moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
+    }
+
+    public void OnTakingDamage(float amount)
+    {
+        health -= amount;
+        StartCoroutine(FlashRed());
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator FlashRed()
+    {
+        enemyRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        enemyRenderer.material.color = Color.white;
     }
 }
