@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public Move moveScript;   // Reference to the Move script (to control movement)
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
     public float attackInterval = 3f;
-    public Animator animator;
+    Animator animator;
     public UnityEvent<AttackType> OnAttack;
 
     public float maxHealth = 100f;
@@ -18,13 +18,16 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector2 directionToPlayer;  // Direction vector towards player
     private Transform player;  // Reference to the player's Transform (position)
     private float lastAttackTime = 0f;
-    private Renderer enemyRenderer;
+    public Renderer enemyRenderer;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         health = maxHealth;
-        enemyRenderer = GetComponent<Renderer>();
+        if (enemyRenderer == null)
+        {
+            enemyRenderer = GetComponent<Renderer>();
+        }
         // Optionally, get references dynamically if not set in Inspector
         if (player == null)
         {
@@ -45,17 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable
         // Check the distance between the object and the player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer < stopDistance)
-        {
-            moveScript.ResetMove(); // Stop movement
-
-            if (Time.time - lastAttackTime >= attackInterval)
-            {
-                animator.SetTrigger("Slash");
-                OnAttack?.Invoke(AttackType.Primary);
-                lastAttackTime = Time.time; // Update last attack time
-            }
-        }
+        
 
         // Determine movement direction
         bool moveUp = directionToPlayer.y > 0.1f;
@@ -63,8 +56,23 @@ public class Enemy : MonoBehaviour, IDamageable
         bool moveRight = directionToPlayer.x > 0.1f;
         bool moveLeft = directionToPlayer.x < -0.1f;
 
-        // Move in the determined direction (supports diagonal movement)
-        moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
+        
+
+        if (distanceToPlayer < stopDistance)
+        {
+            moveScript.ResetMove(); // Stop movement
+
+            if (Time.time - lastAttackTime >= attackInterval)
+            {
+                StartCoroutine(Attack());
+           
+            }
+        }
+        else
+        {
+            // Move in the determined direction (supports diagonal movement)
+            moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
+        }
     }
 
     public void OnTakingDamage(float amount)
@@ -82,5 +90,13 @@ public class Enemy : MonoBehaviour, IDamageable
         enemyRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         enemyRenderer.material.color = Color.white;
+    }
+
+    private IEnumerator Attack()
+    {
+        animator.SetTrigger("Slash");
+        OnAttack?.Invoke(AttackType.Primary);
+        lastAttackTime = Time.time; // Update last attack time
+        yield return null;
     }
 }

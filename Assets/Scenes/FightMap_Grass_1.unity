@@ -5958,6 +5958,11 @@ Transform:
   - {fileID: 277085709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &418949734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4593255768948569558, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+  m_PrefabInstance: {fileID: 308016442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &426594230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7041,9 +7046,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1443303983}
+  - {fileID: 418949734}
+  - {fileID: 1466684312}
   - {fileID: 2133226211}
   AugmentSelectionUI: {fileID: 640327206}
 --- !u!4 &1012354893
@@ -7156,10 +7161,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2989262492310327123, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: m_Name
       value: elf_fighter
@@ -11459,6 +11460,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+--- !u!1 &1443303983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4593255768948569558, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+  m_PrefabInstance: {fileID: 1400656467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1466684312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4593255768948569558, guid: c80ddc206c826914281af1b16ffef3ef, type: 3}
+  m_PrefabInstance: {fileID: 1491541969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1491541969
 PrefabInstance:
   m_ObjectHideFlags: 0

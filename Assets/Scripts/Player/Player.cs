@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
 public class Player : MonoBehaviour, IDamageable
 {
     public UnityEvent<AttackType> OnAttack;
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour, IDamageable
 
     void Update()
     {
-        moveScript.ResetMove();
+        
 
         // Get movement input for all directions
         bool moveUp = Input.GetKey(KeyCode.W);
@@ -61,37 +60,21 @@ public class Player : MonoBehaviour, IDamageable
         bool moveRight = Input.GetKey(KeyCode.D);
         bool moveLeft = Input.GetKey(KeyCode.A);
 
-        // Move in the determined direction (supports diagonal movement)
-        moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
-
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if(moveUp || moveDown || moveLeft || moveRight)
         {
-            StartDash();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("Slash");
-            Attack();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            UseWeaponSkill();
-        }
-
-        if (!canDash)
-        {
-            dashCooldownTimer -= Time.deltaTime;
-            // cooldownText.text = "Dash Cooldown: " + Mathf.Ceil(dashCooldownTimer).ToString() + "s";
+            // Move in the determined direction (supports diagonal movement)
+            moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
         }
         else
         {
-            // cooldownText.text = "Dash Ready!";
+            moveScript.ResetMove();
         }
+        StartCoroutine(Action());
 
         UpdateUI();
     }
+
+    
 
     void StartDash()
     {
@@ -151,5 +134,35 @@ public class Player : MonoBehaviour, IDamageable
         playerRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         playerRenderer.material.color = Color.white;
+    }
+
+    private IEnumerator Action()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
+            StartDash();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Slash");
+            Attack();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            UseWeaponSkill();
+        }
+
+        if (!canDash)
+        {
+            dashCooldownTimer -= Time.deltaTime;
+            // cooldownText.text = "Dash Cooldown: " + Mathf.Ceil(dashCooldownTimer).ToString() + "s";
+        }
+        // else
+        // {
+        //     cooldownText.text = "Dash Ready!";
+        // }
+         yield return null;
     }
 }
