@@ -22,7 +22,6 @@ public class PathFinder : MonoBehaviour
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").transform;
-            Debug.Log("player found!");
         }
 
         if (moveScript == null)

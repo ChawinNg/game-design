@@ -302,8 +302,8 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2885332313442557540}
-        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
+      - m_Target: {fileID: 8568453574409803983}
+        m_TargetAssemblyTypeName: MonsterCombatSystem, Assembly-CSharp
         m_MethodName: PerformAttack
         m_Mode: 0
         m_Arguments:
@@ -382,7 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7494487794768408989}
-  - component: {fileID: 2885332313442557540}
+  - component: {fileID: 8568453574409803983}
   m_Layer: 0
   m_Name: CombatSystem
   m_TagString: Untagged
@@ -406,7 +406,7 @@ Transform:
   - {fileID: 7669655652873626682}
   m_Father: {fileID: 9142756432915883754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2885332313442557540
+--- !u!114 &8568453574409803983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,10 +415,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5386258280222527871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3971b711de08c274ea467a87166fa23e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b2761fb5e2890a48b23912a3b88badd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 9142756432915883754}
+  monsterTransform: {fileID: 9142756432915883754}
+  playerTransform: {fileID: 0}
   currentWeapon: {fileID: 1130846249436372513}
 --- !u!1 &5413173160909463970
 GameObject:
