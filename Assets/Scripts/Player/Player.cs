@@ -79,8 +79,6 @@ private void UpdateStat(string statName, float value)
     }
     void Update()
     {
-        
-
         // Get movement input for all directions
         bool moveUp = Input.GetKey(KeyCode.W);
         bool moveDown = Input.GetKey(KeyCode.S);

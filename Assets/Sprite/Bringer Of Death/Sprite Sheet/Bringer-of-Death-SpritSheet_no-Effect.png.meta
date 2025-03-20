@@ -5,7 +5,7 @@ AssetOrigin:
   productId: 195719
   packageName: Bringer Of Death (free)
   packageVersion: 1.0
-  assetPath: Assets/Bringer Of Death/Sprite Sheet/Bringer-of-Death-SpritSheet_no-Effect.png
+  assetPath: Assets/Sprite/Bringer Of Death/Sprite Sheet/Bringer-of-Death-SpritSheet_no-Effect.png
   uploadId: 434405
 TextureImporter:
   internalIDToNameTable:

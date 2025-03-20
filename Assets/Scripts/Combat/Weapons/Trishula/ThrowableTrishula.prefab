@@ -185,5 +185,5 @@ MonoBehaviour:
   Hitbox: {fileID: 3909915832719279905}
   Velocity: {x: 0, y: 0, z: 0}
   baseDamage: 10
-  knockbackForce: 10
+  knockbackForce: 20
   knockbackTime: 0.25

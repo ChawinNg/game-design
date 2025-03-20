@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector2 directionToPlayer;  // Direction vector towards player
     private Transform player;  // Reference to the player's Transform (position)
     private float lastAttackTime = 0f;
-    public Renderer enemyRenderer;
+    public Renderer enemyRenderer; // For Boss
 
     void Start()
     {
@@ -51,15 +51,11 @@ public class Enemy : MonoBehaviour, IDamageable
         // Check the distance between the object and the player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        
-
         // Determine movement direction
         bool moveUp = directionToPlayer.y > 0.1f;
         bool moveDown = directionToPlayer.y < -0.1f;
         bool moveRight = directionToPlayer.x > 0.1f;
         bool moveLeft = directionToPlayer.x < -0.1f;
-
-        
 
         if (distanceToPlayer < stopDistance)
         {
@@ -68,7 +64,6 @@ public class Enemy : MonoBehaviour, IDamageable
             if (Time.time - lastAttackTime >= attackInterval)
             {
                 StartCoroutine(Attack());
-           
             }
         }
         else

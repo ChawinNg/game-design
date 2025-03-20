@@ -32,16 +32,14 @@ public class Move : MonoBehaviour, IKnockbackable
     public void ResetMove()
     {
         moveInput = Vector2.zero;
-        
         animator.SetBool("Walk", false);
     }
 
     // Public method that other objects can call to move in a specific direction
     public void MoveInDirection(bool up, bool down, bool left, bool right)
-    {
-        moveInput = Vector2.zero;
-        
-       
+    {        
+        moveInput = Vector2.zero; // If don't set, obj will move like it is on ice
+
         if (right)
         {
             animator.SetFloat("x", 1f);
@@ -89,14 +87,20 @@ public class Move : MonoBehaviour, IKnockbackable
         }
     }
 
-    public IEnumerator OnTakingKnockback(Vector3 force, float second)
+    public void TakingKnockback(Vector3 force, float second)
     {
         isBeingKnockback = true;
+        Debug.Log("start");
+        ResetMove();
 
+        StartCoroutine(OnTakingKnockback(force, second));
+    }
+
+    public IEnumerator OnTakingKnockback(Vector3 force, float second)
+    {
         rb.AddForce(force / second);
 
         yield return new WaitForSeconds(second);
-
         isBeingKnockback = false;
     }
 }

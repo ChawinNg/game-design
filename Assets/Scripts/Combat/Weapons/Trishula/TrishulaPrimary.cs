@@ -61,7 +61,7 @@ private void UpdateStat(string statName, float value)
             IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();
             if (knockbackable != null)
             {
-                StartCoroutine(knockbackable.OnTakingKnockback(aimmingDirection * knockbackForce, knockbackTime));
+                knockbackable.TakingKnockback(aimmingDirection * knockbackForce, knockbackTime);
             }
         }
     }

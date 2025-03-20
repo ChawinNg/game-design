@@ -32,13 +32,15 @@ public class ThrowableTrishula : MonoBehaviour
             IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();
             if (knockbackable != null)
             {
-                StartCoroutine(knockbackable.OnTakingKnockback(Velocity.normalized * knockbackForce, knockbackTime));
+                knockbackable.TakingKnockback(Velocity.normalized * knockbackForce, knockbackTime);
             }
         }
 
         if (isHit)
         {
             Destroy(gameObject);
+            Debug.Log("Destroy!");
+
         }
     }
 }
