@@ -6,8 +6,8 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance { get; private set; }
     public List<GameObject> activeEnemies;
     private bool isCheckingEnemies = true; 
-    public GameObject AugmentSelectionUI; 
-
+    public GameObject AugmentSelectionUI;
+    public bool CanTeleport { get; private set; } = false;
 
     void Awake()
     {
@@ -27,7 +27,11 @@ public class EnemyManager : MonoBehaviour
         CleanupList();
         if (activeEnemies.Count == 0)
         {
+            CanTeleport = true;
             ShowAugmentSelection();
+        }
+        else { 
+            CanTeleport = false; 
         }
     }
 
