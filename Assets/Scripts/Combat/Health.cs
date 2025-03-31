@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    public float maxHealth = 100f;
+    public float maxHealth;
 
     private float health;
 

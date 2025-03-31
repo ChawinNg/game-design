@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
 public class Player : MonoBehaviour, IDamageable
 {
     public UnityEvent<AttackType> OnAttack;
@@ -15,16 +16,13 @@ public class Player : MonoBehaviour, IDamageable
     private bool canDash = true;
     private float dashCooldownTimer = 0f;
 
-    public float maxHealth = 100f;
+    public float maxHealth;
 
     public float health;
     public int armor = 30;
 
     private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
-    // public Text cooldownText;
-    // public Text healthText;
-    // public Text armorText;
 
     void Awake()
     {
@@ -37,10 +35,8 @@ public class Player : MonoBehaviour, IDamageable
         DontDestroyOnLoad(gameObject);
     }
 
-
     void Start()
     {
-        health = maxHealth;
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         if (playerCollider == null)
@@ -50,14 +46,14 @@ public class Player : MonoBehaviour, IDamageable
 
         playerRenderer = GetComponent<Renderer>();
 
-         if (AugmentStore.Instance != null)
+        if (AugmentStore.Instance != null)
         {
             AugmentStore.Instance.OnStatChanged += UpdateStat;
             UpdateStat(nameof(AugmentStore.DamageModifier), AugmentStore.Instance.DamageModifier);
         }
     }
 
-private void UpdateStat(string statName, float value)
+    private void UpdateStat(string statName, float value)
     {
         switch (statName)
         {
@@ -77,7 +73,8 @@ private void UpdateStat(string statName, float value)
                 break;
         }
     }
-    void Update()
+
+    private void Update()
     {
         // Get movement input for all directions
         bool moveUp = Input.GetKey(KeyCode.W);
@@ -85,7 +82,7 @@ private void UpdateStat(string statName, float value)
         bool moveRight = Input.GetKey(KeyCode.D);
         bool moveLeft = Input.GetKey(KeyCode.A);
 
-        if(moveUp || moveDown || moveLeft || moveRight)
+        if (moveUp || moveDown || moveLeft || moveRight)
         {
             // Move in the determined direction (supports diagonal movement)
             moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
@@ -94,12 +91,10 @@ private void UpdateStat(string statName, float value)
         {
             moveScript.ResetMove();
         }
-        StartCoroutine(Action());
 
+        StartCoroutine(Action());
         UpdateUI();
     }
-
-    
 
     void StartDash()
     {
@@ -150,7 +145,15 @@ private void UpdateStat(string statName, float value)
         StartCoroutine(FlashRed());
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (GameOver.Instance != null)
+        {
+            GameOver.Instance.ShowGameOverScreen();
         }
     }
 
@@ -182,12 +185,22 @@ private void UpdateStat(string statName, float value)
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
-            // cooldownText.text = "Dash Cooldown: " + Mathf.Ceil(dashCooldownTimer).ToString() + "s";
         }
-        // else
-        // {
-        //     cooldownText.text = "Dash Ready!";
-        // }
-         yield return null;
+        
+        yield return null;
+    }
+
+    // This function resets the player's state when the game starts or when Play Again is clicked
+    public void ResetPlayer()
+    {
+        health = maxHealth; // Reset health to max
+        armor = 30; // Reset armor (or set to any default value)
+        moveScript.moveSpeed = 2f; // Reset movement speed (or any default value)
+        
+        // Reset any other player-related states here (such as dash cooldown, etc.)
+        dashCooldownTimer = 0f;
+        canDash = true;
+
+        Debug.Log("Player state reset: Health: " + health + " Armor: " + armor + " Speed: " + moveScript.moveSpeed);
     }
 }
