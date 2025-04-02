@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform TargetTransform;
 
+    [SerializeField]
     private float smoothAmount = 0.2f;
 
     private Transform cameraTransform;

@@ -2683,6 +2683,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5161512341172861885, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: smoothAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: health
       value: 200
