@@ -2492,6 +2492,17 @@ Transform:
   - {fileID: 1076312430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481406373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2791094771376948377, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+  m_PrefabInstance: {fileID: 605419949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022959151e6a7f34b800b142d929f0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &568679985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,6 +2694,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3926392458269683897, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 481406373}
     - target: {fileID: 5161512341172861885, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: smoothAmount
       value: 1

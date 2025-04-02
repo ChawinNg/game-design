@@ -10,8 +10,8 @@ public class Weapon : MonoBehaviour
 
     public void AimToDirection(Vector3 dir)
     {
-        primaryAttack.UpdateAimDirection(dir);
-        secondaryAttack.UpdateAimDirection(dir);
+        primaryAttack?.UpdateAimDirection(dir);
+        secondaryAttack?.UpdateAimDirection(dir);
     }
 
     public void PerformAttack(AttackType type)
@@ -19,10 +19,10 @@ public class Weapon : MonoBehaviour
         switch (type)
         {
             case AttackType.Primary:
-                primaryAttack.DoPerformAttack();
+                primaryAttack?.DoPerformAttack();
                 break;
             case AttackType.Secondary:
-                secondaryAttack.DoPerformAttack();
+                secondaryAttack?.DoPerformAttack();
                 break;
         }
     }
