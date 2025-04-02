@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2989262492310327134}
-  currentWeapon: {fileID: 7061140442268728260}
+  currentWeapon: {fileID: 2791094771376948377}
 --- !u!1 &2989262492310327123
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,8 +304,8 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashDuration: 0.2
   dashCooldown: 5
-  maxHealth: 1000
-  health: 100
+  maxHealth: 200
+  health: 200
   armor: 30
 --- !u!114 &3060800453956762900
 MonoBehaviour:
@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetTransform: {fileID: 2989262492310327134}
-  smoothAmount: 0.2
+  smoothAmount: 1
 --- !u!212 &1684680702909438134
 SpriteRenderer:
   m_ObjectHideFlags: 0
