@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public float health;
     public int armor = 30;
+    public UnityAction<float, float> OnHealthChanged;
 
     private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
@@ -141,8 +142,11 @@ public class Player : MonoBehaviour, IDamageable
     public void OnTakingDamage(float amount)
     {
         health -= amount;
+        OnHealthChanged?.Invoke(health, maxHealth);
+
         UpdateUI();
         StartCoroutine(FlashRed());
+
         if (health <= 0)
         {
             Die();
@@ -200,6 +204,8 @@ public class Player : MonoBehaviour, IDamageable
         // Reset any other player-related states here (such as dash cooldown, etc.)
         dashCooldownTimer = 0f;
         canDash = true;
+
+        OnHealthChanged?.Invoke(health, maxHealth);
 
         Debug.Log("Player state reset: Health: " + health + " Armor: " + armor + " Speed: " + moveScript.moveSpeed);
     }
