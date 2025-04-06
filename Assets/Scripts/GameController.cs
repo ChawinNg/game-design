@@ -9,12 +9,15 @@ public class GameController : MonoBehaviour
     public static Vector3 nextSpawnPosition = new Vector3(-2, -1, 0);
 
     public Slider hpSlider;
-    public Image dashCooldownImage;
 
+    public Image dashCooldownImage;
     public float dashCooldownDuration = 5f;
     private bool canDash = true;
     private float dashCooldownTimer = 0f;
     public TMP_Text dashCooldownText;
+
+    public Image attackCooldownImage;
+    public TMP_Text attackCooldownText;
 
     private void Awake()
     {
@@ -89,6 +92,19 @@ public class GameController : MonoBehaviour
         dashCooldownTimer = dashCooldownDuration;
         dashCooldownImage.fillAmount = 0f;
         dashCooldownText.text = dashCooldownDuration.ToString("0.0");
+    }
+
+    public void UpdateAttackCooldown(float timer, float attackCooldownDuration)
+    {
+        if (timer == attackCooldownDuration) {
+            attackCooldownImage.fillAmount = 1f;
+            attackCooldownText.text = "";
+            attackCooldownImage.color = Color.white;
+        } else {
+            attackCooldownImage.fillAmount = timer / attackCooldownDuration;
+            attackCooldownText.text = (Mathf.Ceil(timer * 10) / 10f).ToString("0.0");
+            attackCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
+        }
     }
 
 }

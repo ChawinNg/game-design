@@ -21,7 +21,19 @@ public abstract class AttackBase : MonoBehaviour
     {
         onCooldown = true;
 
-        yield return new WaitForSeconds(cooldown);
+        float timer = 0f;
+
+        GameController.Instance.UpdateAttackCooldown(0f, cooldown);
+
+        while (timer < cooldown)
+        {
+            timer += Time.deltaTime;
+            GameController.Instance.UpdateAttackCooldown(timer, cooldown);
+
+            yield return null;
+        }
+
+        GameController.Instance.UpdateAttackCooldown(cooldown, cooldown);
 
         onCooldown = false;
     }
