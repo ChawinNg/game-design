@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, IDamageable
 
         canDash = false;
         dashCooldownTimer = dashCooldown;
-
+        GameController.Instance.TriggerCooldown();
         // **Increase Move Speed for Dash**
         moveScript.moveSpeed *= dashSpeedMultiplier;
 
