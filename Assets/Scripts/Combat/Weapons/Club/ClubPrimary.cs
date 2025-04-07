@@ -64,4 +64,6 @@ public class ClubPrimary : AttackBase
             }
         }
     }
+
+    public override void PostPerformAttack() { }
 }

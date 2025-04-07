@@ -68,4 +68,6 @@ public class ClubSecondary : AttackBase
             yield return new WaitForSeconds(attackInterval);
         }
     }
+
+    public override void PostPerformAttack() { }
 }

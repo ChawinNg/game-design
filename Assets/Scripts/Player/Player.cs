@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    public UnityEvent<AttackType> OnAttack;
+    public UnityEvent<AttackType> OnAttack, OnPostAttack;
     public Move moveScript;
 
     Animator animator;
@@ -133,6 +133,12 @@ public class Player : MonoBehaviour, IDamageable
         OnAttack?.Invoke(AttackType.Primary);
     }
 
+    void PostAttack()
+    {
+        Debug.Log("Post attack triggered");
+        OnPostAttack?.Invoke(AttackType.Primary);
+    }
+
     void UseWeaponSkill()
     {
         Debug.Log("Weapon skill activated!");
@@ -181,6 +187,11 @@ public class Player : MonoBehaviour, IDamageable
             Attack();
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            PostAttack();
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             UseWeaponSkill();
@@ -190,7 +201,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             dashCooldownTimer -= Time.deltaTime;
         }
-        
+
         yield return null;
     }
 
@@ -200,7 +211,7 @@ public class Player : MonoBehaviour, IDamageable
         health = maxHealth; // Reset health to max
         armor = 30; // Reset armor (or set to any default value)
         moveScript.moveSpeed = 2f; // Reset movement speed (or any default value)
-        
+
         // Reset any other player-related states here (such as dash cooldown, etc.)
         dashCooldownTimer = 0f;
         canDash = true;

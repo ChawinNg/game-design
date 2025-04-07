@@ -26,4 +26,16 @@ public class Weapon : MonoBehaviour
                 break;
         }
     }
+    public void PostPerformAttack(AttackType type)
+    {
+        switch (type)
+        {
+            case AttackType.Primary:
+                primaryAttack?.PostPerformAttack();
+                break;
+            case AttackType.Secondary:
+                secondaryAttack?.PostPerformAttack();
+                break;
+        }
+    }
 }

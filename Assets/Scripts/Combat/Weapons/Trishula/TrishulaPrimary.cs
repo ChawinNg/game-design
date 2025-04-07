@@ -11,7 +11,7 @@ public class TrishulaPrimary : AttackBase
     public float baseDamage = 10f;
     public float knockbackForce = 10f;
     public float knockbackTime = 0.25f;
-    public string attackabletag ="HostileEnemy";
+    public string attackabletag = "HostileEnemy";
 
     private float attackRange;
 
@@ -35,14 +35,14 @@ public class TrishulaPrimary : AttackBase
             AugmentStore.Instance.OnStatChanged -= UpdateStat;
         }
     }
-private void UpdateStat(string statName, float value)
-{
-    if (statName == nameof(AugmentStore.DamageModifier))
+    private void UpdateStat(string statName, float value)
     {
-        baseDamage = 10f + 10f * value;
-        Debug.Log("Updated Base Damage: " + baseDamage);
+        if (statName == nameof(AugmentStore.DamageModifier))
+        {
+            baseDamage = 10f + 10f * value;
+            Debug.Log("Updated Base Damage: " + baseDamage);
+        }
     }
-}
     public override void UpdateAimDirection(Vector3 direction)
     {
         aimmingDirection = direction;
@@ -65,4 +65,6 @@ private void UpdateStat(string statName, float value)
             }
         }
     }
+
+    public override void PostPerformAttack() { }
 }

@@ -22,4 +22,9 @@ public class CombatSystem : MonoBehaviour
     {
         currentWeapon.PerformAttack(attackType);
     }
+
+    public void PostPerformAttack(AttackType attackType)
+    {
+        currentWeapon.PostPerformAttack(attackType);
+    }
 }
