@@ -11,7 +11,8 @@ public class AugmentSelection : MonoBehaviour
 
     public GameObject AugmentSelectionUI; 
     public List<AugmentData> availableAugments;
-    
+    public Transform selectedAugmentsPanel;
+    public GameObject augmentSlotPrefab;
     void Start()
     {
         PopulateAugments();
@@ -29,6 +30,9 @@ public class AugmentSelection : MonoBehaviour
         {
             GameObject buttonObj = Instantiate(augmentButtonPrefab, augmentContainer);
             buttonObj.GetComponentInChildren<TMP_Text>().text = augment.augmentName;
+            var iconImage = buttonObj.transform.Find("Icon").GetComponent<Image>();
+            iconImage.sprite = augment.iconSprite;
+            iconImage.SetNativeSize(); 
             Debug.Log($"augmentName Type: {augment.augmentName.GetType()} - Value: {augment.augmentName}");
 
 
@@ -39,6 +43,11 @@ public class AugmentSelection : MonoBehaviour
     void SelectAugment(AugmentData augment)
     {
         augment.ApplyEffect();
+        DontDestroyOnLoad(selectedAugmentsPanel);
+        GameObject newSlot = Instantiate(augmentSlotPrefab, selectedAugmentsPanel);
+        var iconImage = newSlot.transform.Find("Icon").GetComponentInChildren<Image>();
+        iconImage.sprite = augment.iconSprite;
+        iconImage.SetNativeSize(); 
         Time.timeScale = 1f; 
         AugmentSelectionUI.SetActive(false);
     }

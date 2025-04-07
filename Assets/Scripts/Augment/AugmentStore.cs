@@ -4,7 +4,7 @@ using UnityEngine;
 public class AugmentStore : MonoBehaviour
 {
     public static AugmentStore Instance;
-     public event Action<string, float> OnStatChanged;
+    public event Action<string, float> OnStatChanged;
 
     private float _damageModifier = 0;
     private float _healthModifier = 0;
