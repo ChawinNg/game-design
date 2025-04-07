@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: DashCooldown
   m_EditorClassIdentifier: 
   augmentName: Decrease dash cooldown
+  iconSprite: {fileID: 1125875574, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
   description: 
   healthModifier: 0
   damageModifier: 0
+  moveSpeedModifer: 0
   dashCooldownModifier: 1
   armorModifier: 0
+  attackSpeedModifier: 0

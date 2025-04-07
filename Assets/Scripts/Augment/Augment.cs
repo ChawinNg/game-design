@@ -4,6 +4,7 @@ using UnityEngine;
 public class AugmentData : ScriptableObject
 {
     public string augmentName;
+    public Sprite iconSprite;
     public string description;
     public float healthModifier;
     public float damageModifier;
@@ -11,16 +12,16 @@ public class AugmentData : ScriptableObject
     public float dashCooldownModifier;
     public int armorModifier;
     public float attackSpeedModifier;
-     public void ApplyEffect()
+    public void ApplyEffect()
     {
         Player player = FindFirstObjectByType<Player>();
         Player playerScript = player.GetComponent<Player>();
 
         if (playerScript != null)
         {
-            if (healthModifier != 0) 
+            if (healthModifier != 0)
             {
-                AugmentStore.Instance.HealthModifier += healthModifier;;
+                AugmentStore.Instance.HealthModifier += healthModifier; ;
             }
 
             if (dashCooldownModifier != 0)
@@ -33,11 +34,13 @@ public class AugmentData : ScriptableObject
                 AugmentStore.Instance.ArmorModifier += armorModifier;
             }
 
-            if (moveSpeedModifer != 0) {
+            if (moveSpeedModifer != 0)
+            {
                 AugmentStore.Instance.MoveSpeedModifier *= moveSpeedModifer;
             }
 
-            if (damageModifier != 0) {
+            if (damageModifier != 0)
+            {
                 AugmentStore.Instance.DamageModifier += damageModifier;
             }
 

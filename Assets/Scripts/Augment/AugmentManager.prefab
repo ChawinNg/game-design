@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6600140651565320877}
   - component: {fileID: 3296763780114053930}
+  - component: {fileID: 2109159898184966140}
   m_Layer: 0
   m_Name: AugmentManager
   m_TagString: Untagged
@@ -53,4 +54,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21c6810375a0807498daeae5c8d84117, type: 2}
   - {fileID: 11400000, guid: a7f3a777f68f9874f91d1235c537f9b3, type: 2}
   - {fileID: 11400000, guid: d90d7b6896820104297624207168a735, type: 2}
-  damageModifier: 1
+  selectedAugmentsPanel: {fileID: 0}
+  augmentSlotPrefab: {fileID: 3841309231975153551, guid: 0173f20cfaef53f4ea73af4b7bca1b49, type: 3}
+--- !u!114 &2109159898184966140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820061781308510896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07972a55afe88ff4b953161fbc126971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
