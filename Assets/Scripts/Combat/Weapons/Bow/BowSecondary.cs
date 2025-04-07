@@ -1,8 +1,7 @@
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class ClubSecondary : AttackBase
+public class BowSecondary : AttackBase
 {
     [Header("Objects")]
     public WeaponHitbox hitbox;
@@ -58,7 +57,6 @@ public class ClubSecondary : AttackBase
                 if (!obj.CompareTag(attackabletag)) continue;
 
                 Vector3 direction = (obj.GetComponent<Transform>().position - transform.position).normalized;
-
 
                 obj.GetComponent<IDamageable>()?.OnTakingDamage(damage);
                 IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();

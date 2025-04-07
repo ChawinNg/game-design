@@ -66,5 +66,5 @@ public class TrishulaPrimary : AttackBase
         }
     }
 
-    public override void PostPerformAttack() { }
+    protected override void PostPerformAttack() { }
 }

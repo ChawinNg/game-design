@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform hitbox;
-    public WeaponHitbox weapon;
-
     public AttackBase primaryAttack;
     public AttackBase secondaryAttack;
 
@@ -31,10 +28,10 @@ public class Weapon : MonoBehaviour
         switch (type)
         {
             case AttackType.Primary:
-                primaryAttack?.PostPerformAttack();
+                primaryAttack?.DoPostPerformAttack();
                 break;
             case AttackType.Secondary:
-                secondaryAttack?.PostPerformAttack();
+                secondaryAttack?.DoPostPerformAttack();
                 break;
         }
     }

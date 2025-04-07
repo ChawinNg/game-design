@@ -6,18 +6,31 @@ public abstract class AttackBase : MonoBehaviour
     public float cooldown = 1f;
 
     private bool onCooldown = false;
+    private bool holding = false;
 
     protected abstract void PerformAttack();
+    protected abstract void PostPerformAttack();
     public abstract void UpdateAimDirection(Vector3 direction);
 
     public void DoPerformAttack()
     {
         if (onCooldown) return;
         PerformAttack();
-        StartCoroutine(CooldownRoutine());
+        holding = true;
     }
 
-    public abstract void PostPerformAttack();
+    public void DoPostPerformAttack()
+    {
+        if (!holding) return;
+        PostPerformAttack();
+        StopHoldingAttack();
+    }
+
+    protected void StopHoldingAttack()
+    {
+        StartCoroutine(CooldownRoutine());
+        holding = false;
+    }
 
     private IEnumerator CooldownRoutine()
     {

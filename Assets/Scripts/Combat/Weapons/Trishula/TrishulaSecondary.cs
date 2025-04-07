@@ -26,5 +26,5 @@ public class TrishulaSecondary : AttackBase
         throwables.Add(obj);
     }
 
-    public override void PostPerformAttack() { }
+    protected override void PostPerformAttack() { }
 }
