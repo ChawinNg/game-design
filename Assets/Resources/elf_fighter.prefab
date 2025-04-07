@@ -44,17 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca453264e5db04543bcabc174eb1e33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
-  hitbox: {fileID: 0}
-  transform: {fileID: 0}
+  cooldown: 5
+  obj: {fileID: 645922740127598703, guid: 6381c6d9a13303e4fb6546c5d3617717, type: 3}
   baseDamage: 10
-  knockbackForce: 10
-  knockbackTime: 0.25
-  startDamageRate: 0.8
-  endDamageRate: 4
   attackabletag: HostileEnemy
-  attackInterval: 0.5
-  spinDuration: 5
 --- !u!1 &1632805494280372938
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,12 +660,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b109639bb2094254ca5b713ce9df1598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 1
   Arrow: {fileID: 5422448823268907183, guid: 2a3cf32ab8fd2284893930b03c923ec8, type: 3}
   arrowspeed: 5
-  PerfectDamageMultiplier: 1.5
+  PerfectDamageMultiplier: 2.5
   PerfectTimingInSecond: 2
-  PerfectWindowInSecond: 0.1
+  PerfectWindowInSecond: 0.25
   PerfectDisplay: {fileID: 1632805494280372938}
 --- !u!1 &4485763243416011167
 GameObject:

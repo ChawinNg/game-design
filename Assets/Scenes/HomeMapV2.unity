@@ -2873,18 +2873,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4165044037196132980, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
-      propertyPath: cooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165044037196132980, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
-      propertyPath: PerfectWindowInSecond
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165044037196132980, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
-      propertyPath: PerfectDamageMultiplier
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
