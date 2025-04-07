@@ -145,6 +145,12 @@ public class Player : MonoBehaviour, IDamageable
         OnAttack?.Invoke(AttackType.Secondary);
     }
 
+    void PostUseWeaponSkill()
+    {
+        Debug.Log("Post Weapon skill triggered!");
+        OnPostAttack?.Invoke(AttackType.Secondary);
+    }
+
     public void OnTakingDamage(float amount)
     {
         health -= amount;
@@ -186,8 +192,7 @@ public class Player : MonoBehaviour, IDamageable
             animator.SetTrigger("Slash");
             Attack();
         }
-
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             PostAttack();
         }
@@ -195,6 +200,10 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetMouseButtonDown(1))
         {
             UseWeaponSkill();
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            PostUseWeaponSkill();
         }
 
         if (!canDash)
