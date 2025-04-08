@@ -9156,7 +9156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3cc04ebc8d45241b3cce4003e69da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: FightMap1
+  nextScene: 
+  isShop: 0
 --- !u!1 &390203968
 GameObject:
   m_ObjectHideFlags: 0
@@ -18266,6 +18267,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2301250499372042375, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2762074996817724240, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -18308,6 +18313,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229081480874004024, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047350228497366066, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047350228497366066, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765723469710636069, guid: b43f6fd64c42e43449cb0399ced6d3e0, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

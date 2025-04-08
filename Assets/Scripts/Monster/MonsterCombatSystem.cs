@@ -20,7 +20,6 @@ public class MonsterCombatSystem : MonoBehaviour
         // Debug.Log($"Player Position: {playerTransform.position}, Monster Position: {monsterTransform.position}");
         Vector3 mouseVec = Projection.ProjectToOrthogonalSpace((playerTransform.position - monsterTransform.position).normalized);
         // Vector3 mouseVec = (playerTransform.position - monsterTransform.position).normalized;
-Debug.Log($"Mouse Vector: {mouseVec}");
         currentWeapon.AimToDirection(mouseVec);
     }
 

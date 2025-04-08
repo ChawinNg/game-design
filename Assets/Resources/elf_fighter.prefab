@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2989262492310327134}
-  currentWeapon: {fileID: 2215668662778122182}
+  currentWeapon: {fileID: 7061140442268728260}
 --- !u!1 &2989262492310327123
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,8 +455,8 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashDuration: 0.2
   dashCooldown: 5
-  maxHealth: 500
-  health: 500
+  maxHealth: 5000
+  health: 5000
   armor: 30
 --- !u!114 &3060800453956762900
 MonoBehaviour:
