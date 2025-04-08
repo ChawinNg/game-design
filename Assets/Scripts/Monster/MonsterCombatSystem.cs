@@ -17,7 +17,7 @@ public class MonsterCombatSystem : MonoBehaviour
     }
     void Update()
     {
-
+        Debug.Log($"Player Position: {playerTransform.position}, Monster Position: {monsterTransform.position}");
         Vector3 mouseVec = Projection.ProjectToOrthogonalSpace((playerTransform.position - monsterTransform.position).normalized);
 
         currentWeapon.AimToDirection(mouseVec);

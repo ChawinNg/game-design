@@ -90,7 +90,7 @@ public class Move : MonoBehaviour, IKnockbackable
     public void TakingKnockback(Vector3 force, float second)
     {
         isBeingKnockback = true;
-        Debug.Log("start");
+        // Debug.Log("start");
         ResetMove();
 
         StartCoroutine(OnTakingKnockback(force, second));

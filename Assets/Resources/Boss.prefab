@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 1324790436878275084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.186, y: 0.373, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94,8 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022959151e6a7f34b800b142d929f0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 3794493666567287499}
-  weapon: {fileID: 7380748867366824401}
   primaryAttack: {fileID: 1546567084837430119}
   secondaryAttack: {fileID: 2533233729401808811}
 --- !u!1 &1766955557809886051
@@ -217,7 +215,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.01}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.77, y: 0.34}
@@ -269,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveScript: {fileID: 2918887222319323170}
-  stopDistance: 1
-  attackInterval: 3
+  stopDistance: 1.5
+  attackInterval: 1.5
   animator: {fileID: 60956738337191518}
   OnAttack:
     m_PersistentCalls:
@@ -289,6 +287,8 @@ MonoBehaviour:
         m_CallState: 2
   maxHealth: 1000
   enemyRenderer: {fileID: 7362311627613563753}
+  animationEventHandler: {fileID: 9208582310219661496}
+  haveFlipInAnimation: 0
 --- !u!114 &2918887222319323170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b70a586c3c3f454ab08ae316823d5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
+  moveSpeed: 1
   animator: {fileID: 60956738337191518}
 --- !u!61 &3149992387891054565
 BoxCollider2D:
@@ -337,7 +337,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.24}
+  m_Offset: {x: 0, y: 0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 3794493666567287499}
   - component: {fileID: 6684870649607574873}
   - component: {fileID: 7380748867366824401}
+  - component: {fileID: 4717624003659123805}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -376,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 5955595319510812116}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.368, y: 0.08, z: 0}
+  m_LocalPosition: {x: -0.783, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -417,7 +418,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.3
+  m_Radius: 0.6
 --- !u!114 &7380748867366824401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +431,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1e2b940d6524d4380593f94f77f900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &4717624003659123805
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955595319510812116}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6532375371776911554
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +469,7 @@ GameObject:
   - component: {fileID: 2772097675032270212}
   - component: {fileID: 7362311627613563753}
   - component: {fileID: 60956738337191518}
+  - component: {fileID: 9208582310219661496}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -457,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 6532375371776911554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.359, y: 0.419, z: 0}
+  m_LocalPosition: {x: -0.356, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -506,7 +535,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 4072241969498346569, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -540,6 +569,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9208582310219661496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6532375371776911554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238696a0e4956564eae49fdde67e7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 240555645466936090}
+        m_TargetAssemblyTypeName: MonsterCombatSystem, Assembly-CSharp
+        m_MethodName: PerformAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enemy: {fileID: -4919416624383699716}
 --- !u!1 &8301092151516580482
 GameObject:
   m_ObjectHideFlags: 0

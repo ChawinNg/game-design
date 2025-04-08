@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 9113329084535439921}
   - component: {fileID: 79379887992545081}
   - component: {fileID: 3508478563407341888}
+  - component: {fileID: 1455153250746213848}
   m_Layer: 0
   m_Name: elf_mon
   m_TagString: HostileEnemy
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveScript: {fileID: 9113329084535439921}
   stopDistance: 0.5
-  attackInterval: 2
+  attackInterval: 1
   animator: {fileID: 2296836262674418761}
   OnAttack:
     m_PersistentCalls:
@@ -304,6 +305,8 @@ MonoBehaviour:
         m_CallState: 2
   maxHealth: 100
   enemyRenderer: {fileID: 0}
+  animationEventHandler: {fileID: 1455153250746213848}
+  haveFlipInAnimation: 1
 --- !u!114 &9113329084535439921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +413,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.34, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1455153250746213848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593255768948569558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238696a0e4956564eae49fdde67e7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8568453574409803983}
+        m_TargetAssemblyTypeName: MonsterCombatSystem, Assembly-CSharp
+        m_MethodName: PerformAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enemy: {fileID: 4167382561516533354}
 --- !u!1 &5386258280222527871
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +586,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022959151e6a7f34b800b142d929f0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 6285319970585710983}
-  weapon: {fileID: 7293920697594274099}
   primaryAttack: {fileID: 4003574569973700734}
   secondaryAttack: {fileID: 347585035830470182}

@@ -20,6 +20,10 @@ public class Enemy : MonoBehaviour, IDamageable
     private float lastAttackTime = 0f;
     public Renderer enemyRenderer; // For Boss
 
+    public AnimationEventHandler animationEventHandler;
+    private bool isAttacking = false; 
+
+    public bool haveFlipInAnimation = true;
     void Start()
     {
         if (animator == null)
@@ -45,6 +49,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (isAttacking) return;
         // Get the direction to the player
         directionToPlayer = (player.position - transform.position).normalized;
 
@@ -63,11 +68,18 @@ public class Enemy : MonoBehaviour, IDamageable
 
             if (Time.time - lastAttackTime >= attackInterval)
             {
+                Debug.Log($"Attacking! {Time.time} - {lastAttackTime} >= {attackInterval}");
+                isAttacking = true;
+
                 StartCoroutine(Attack());
             }
         }
         else
         {
+            // if (!haveFlipInAnimation){
+            //     // bool flip = directionToPlayer
+            //     this.transform.rotation = Quaternion.Euler(new Vector3(0f, moveRight ? 180f : 0f, 0f));
+            // }
             // Move in the determined direction (supports diagonal movement)
             moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
         }
@@ -83,6 +95,14 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    public void SetAttackState(bool isAttacking, float lastAttackTime)
+    {
+        this.isAttacking = isAttacking;
+        this.lastAttackTime = lastAttackTime;
+        Debug.Log($"State set: isAttacking = {isAttacking}, lastAttackTime = {lastAttackTime}, currentTime = {Time.time}");
+
+    }
+
     private IEnumerator FlashRed()
     {
         enemyRenderer.material.color = Color.red;
@@ -93,8 +113,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private IEnumerator Attack()
     {
         animator.SetTrigger("Slash");
-        OnAttack?.Invoke(AttackType.Primary);
-        lastAttackTime = Time.time; // Update last attack time
         yield return null;
     }
 }

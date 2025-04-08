@@ -47,6 +47,7 @@ public class TrishulaPrimary : AttackBase
     {
         aimmingDirection = direction;
         hitboxTransform.localPosition = direction * attackRange;
+        Debug.Log($"Hitbox Position: {hitboxTransform.localPosition}");
     }
 
     protected override void PerformAttack()
