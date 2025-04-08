@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 3060800453956762900}
   - component: {fileID: 4146257573568893270}
   - component: {fileID: 847666750701169651}
+  - component: {fileID: 7941144947584840960}
   m_Layer: 0
   m_Name: elf_fighter
   m_TagString: Player
@@ -454,8 +455,8 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashDuration: 0.2
   dashCooldown: 5
-  maxHealth: 200
-  health: 200
+  maxHealth: 500
+  health: 500
   armor: 30
 --- !u!114 &3060800453956762900
 MonoBehaviour:
@@ -563,6 +564,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.34, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &7941144947584840960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989262492310327123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238696a0e4956564eae49fdde67e7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3926392458269683897}
+        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
+        m_MethodName: PerformAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enemy: {fileID: 0}
 --- !u!1 &3195592481336137090
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ public class AnimationEventHandler : MonoBehaviour
         // This method will be called when the animation ends
         // You can add your logic here, such as resetting the animator or triggering other events
         Debug.Log("Animation has ended.");
-        enemy.SetAttackState(false,Time.time);
+        if(enemy != null){
+            enemy.SetAttackState(false,Time.time);
+        }
     }
 }
