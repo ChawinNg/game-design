@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
     public float attackInterval = 3f;
     public Animator animator;
-    public UnityEvent<AttackType> OnAttack;
+    // public UnityEvent<AttackType> OnAttack;
 
     public float maxHealth = 100f;
 
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector2 directionToPlayer;  // Direction vector towards player
     private Transform player;  // Reference to the player's Transform (position)
     private float lastAttackTime = 0f;
-    public Renderer enemyRenderer; // For Boss
+    public SpriteRenderer enemyRenderer; // For Boss
 
     public AnimationEventHandler animationEventHandler;
     private bool isAttacking = false; 
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health = maxHealth;
         if (enemyRenderer == null)
         {
-            enemyRenderer = GetComponent<Renderer>();
+            enemyRenderer = GetComponent<SpriteRenderer>();
         }
         // Optionally, get references dynamically if not set in Inspector
         if (player == null)
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
             if (Time.time - lastAttackTime >= attackInterval)
             {
-                Debug.Log($"Attacking! {Time.time} - {lastAttackTime} >= {attackInterval}");
+                // Debug.Log($"Attacking! {Time.time} - {lastAttackTime} >= {attackInterval}");
                 isAttacking = true;
 
                 StartCoroutine(Attack());
@@ -76,10 +76,21 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         else
         {
-            // if (!haveFlipInAnimation){
-            //     // bool flip = directionToPlayer
-            //     this.transform.rotation = Quaternion.Euler(new Vector3(0f, moveRight ? 180f : 0f, 0f));
-            // }
+            if (!haveFlipInAnimation){
+                if(!enemyRenderer.flipX && moveRight){
+                    enemyRenderer.flipX = true;
+                    Vector3 spriteLocalPosition = enemyRenderer.transform.localPosition;
+                    spriteLocalPosition.x = -spriteLocalPosition.x; 
+                    enemyRenderer.transform.localPosition = spriteLocalPosition;
+                }
+                else if(enemyRenderer.flipX && moveLeft){
+                    enemyRenderer.flipX = false;
+                    Vector3 spriteLocalPosition = enemyRenderer.transform.localPosition;
+                    spriteLocalPosition.x = -spriteLocalPosition.x; 
+                    enemyRenderer.transform.localPosition = spriteLocalPosition;
+                }
+                
+            }
             // Move in the determined direction (supports diagonal movement)
             moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
         }
@@ -99,7 +110,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         this.isAttacking = isAttacking;
         this.lastAttackTime = lastAttackTime;
-        Debug.Log($"State set: isAttacking = {isAttacking}, lastAttackTime = {lastAttackTime}, currentTime = {Time.time}");
+        // Debug.Log($"State set: isAttacking = {isAttacking}, lastAttackTime = {lastAttackTime}, currentTime = {Time.time}");
 
     }
 
