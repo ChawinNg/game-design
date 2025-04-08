@@ -3,13 +3,31 @@ using UnityEngine.SceneManagement;
 
 public class SceneTeleport : MonoBehaviour
 {
-    public string sceneName;
+    public string nextScene;
+    public bool isShop = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && EnemyManager.Instance != null && EnemyManager.Instance.CanTeleport || sceneName == "FIghtMap_Grass_1")
+        if (!other.CompareTag("Player")) return;
+
+        if (EnemyManager.Instance != null && !EnemyManager.Instance.CanTeleport && !isShop)
+            return;
+
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (isShop)
         {
-            SceneManager.LoadScene(sceneName);
+            SceneHistory.LastScene = currentScene;
+            SceneHistory.NextScene = nextScene;
+            SceneManager.LoadScene("ShopMap");
+        }
+        else if (currentScene == "ShopMap")
+        {
+            SceneManager.LoadScene(SceneHistory.NextScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextScene);
         }
     }
-};
+}

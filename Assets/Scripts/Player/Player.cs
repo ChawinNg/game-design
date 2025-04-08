@@ -54,7 +54,7 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    private void UpdateStat(string statName, float value)
+    public void UpdateStat(string statName, float value)
     {
         switch (statName)
         {
@@ -71,6 +71,24 @@ public class Player : MonoBehaviour, IDamageable
             case nameof(AugmentStore.ArmorModifier):
                 armor = 10 + (int)value;
                 Debug.Log("Updated Armor: " + armor);
+                break;
+
+            case "heal":
+                float healAmount = maxHealth * (value / 100f);
+                health = Mathf.Min(health + healAmount, maxHealth);
+                Debug.Log("Healed: " + healAmount + ", New Health: " + health);
+                break;
+
+            case "add_move_speed":
+                float addSpeed = moveScript.moveSpeed * (value / 100f);
+                moveScript.moveSpeed += addSpeed;
+                Debug.Log("Updated Move Speed: " + moveScript.moveSpeed);
+                break;
+
+            case "decrease_dash_cd":
+                float dec_cd = dashCooldown * (value / 100f);
+                dashCooldown -= dec_cd;
+                Debug.Log("Decrease Cooldown: " + dashCooldown);
                 break;
         }
     }
@@ -129,7 +147,7 @@ public class Player : MonoBehaviour, IDamageable
 
     void Attack()
     {
-        Debug.Log("Attack triggered!" + " Health: " + health + " Armor: " + armor + " Dash Cooldown: " + dashCooldown);
+        Debug.Log("Attack triggered!" + " Health: " + health + " Armor: " + armor + " Dash Cooldown: " + dashCooldown + "Move Speed: " + moveScript.moveSpeed);
         OnAttack?.Invoke(AttackType.Primary);
     }
 
@@ -195,6 +213,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            if (ShopTrigger.IsShopOpen) yield break;
             PostAttack();
         }
 
