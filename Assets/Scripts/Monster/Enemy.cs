@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private bool isAttacking = false; 
 
     public bool haveFlipInAnimation = true;
+    public FloatingHealthBar healthBar; // Reference to the health bar UI
     void Start()
     {
         if (animator == null)
@@ -103,6 +104,9 @@ public class Enemy : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+        else{
+            healthBar.updateHealthBar(health, maxHealth);
         }
     }
 
