@@ -5,6 +5,8 @@ public class ShopTrigger : MonoBehaviour
     public GameObject shopUI; // Assign the UI_Shop GameObject in the Inspector
     private bool isPlayerNearby = false;
 
+    public static bool IsShopOpen { get; private set; } = false;
+
     private void Start()
     {
         shopUI.SetActive(false); // Ensure shop UI is hidden initially
@@ -14,7 +16,9 @@ public class ShopTrigger : MonoBehaviour
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.F))
         {
-            shopUI.SetActive(!shopUI.activeSelf); // Toggle shop UI
+            bool isActive = !shopUI.activeSelf;
+            shopUI.SetActive(isActive); // Toggle shop UI
+            IsShopOpen = isActive; // Toggle shop UI
         }
     }
 
@@ -32,6 +36,7 @@ public class ShopTrigger : MonoBehaviour
         {
             isPlayerNearby = false;
             shopUI.SetActive(false);
+            IsShopOpen = false;
         }
     }
 }

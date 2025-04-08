@@ -24,9 +24,9 @@ public class UI_Shop : MonoBehaviour
 
     private void Start()
     {
-        CreateItemButton("test", 3, 0);
-        CreateItemButton("test2", 4, 1);
-        CreateItemButton("test3", 4, 2);
+        CreateItemButton("Heal 30% of Health", 50, 0);
+        CreateItemButton("+10% SPD", 20, 1);
+        CreateItemButton("+20% ATK", 30, 2);
         header.gameObject.SetActive(true);
     }
 
@@ -37,16 +37,19 @@ public class UI_Shop : MonoBehaviour
             itemTransform.gameObject.SetActive(true);
             RectTransform itemRectTransform = itemTransform.GetComponent<RectTransform>();
             itemRectTransform.Find("ItemName").GetComponent<TextMeshProUGUI>().SetText(itemName);
+            itemRectTransform.Find("Price").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         } else if (positionIndex == 1) {
             Transform itemTransform = Instantiate(item2, container);
             itemTransform.gameObject.SetActive(true);
             RectTransform itemRectTransform = itemTransform.GetComponent<RectTransform>();
             itemRectTransform.Find("ItemName").GetComponent<TextMeshProUGUI>().SetText(itemName);
+            itemRectTransform.Find("Price").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         } else if (positionIndex == 2) {
             Transform itemTransform = Instantiate(item3, container);
             itemTransform.gameObject.SetActive(true);
             RectTransform itemRectTransform = itemTransform.GetComponent<RectTransform>();
             itemRectTransform.Find("ItemName").GetComponent<TextMeshProUGUI>().SetText(itemName);
+            itemRectTransform.Find("Price").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         } 
     } 
 }
