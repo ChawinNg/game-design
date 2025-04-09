@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour
             attackCooldownImage.color = Color.white;
         } else {
             attackCooldownImage.fillAmount = timer / attackCooldownDuration;
-            attackCooldownText.text = (Mathf.Ceil(timer * 10) / 10f).ToString("0.0");
+            attackCooldownText.text = (Mathf.Ceil((attackCooldownDuration-timer) * 10) / 10f).ToString("0.0");
             attackCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
         }
     }
