@@ -6,7 +6,6 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance { get; private set; }
     public List<GameObject> activeEnemies;
     private bool isCheckingEnemies = true; 
-    public GameObject AugmentSelectionUI;
     public bool CanTeleport { get; private set; } = false;
 
     void Awake()
@@ -31,7 +30,7 @@ public class EnemyManager : MonoBehaviour
             ShowAugmentSelection();
         }
         else { 
-            CanTeleport = false; 
+            CanTeleport = false;  
         }
     }
 
@@ -44,8 +43,16 @@ public class EnemyManager : MonoBehaviour
 
     void ShowAugmentSelection()
     {
-        AugmentSelectionUI.SetActive(true); 
-        Time.timeScale = 0f; 
-        isCheckingEnemies = false;
+        if (AugmentSelection.Instance != null)
+        {
+            AugmentSelection.Instance.AugmentSelectionUI.SetActive(true);
+            Time.timeScale = 0f;
+            isCheckingEnemies = false;
+        }
+        else
+        {
+            Debug.LogWarning("AugmentSelection.Instance is null — could not show UI.");
+        }
     }
+
 }
