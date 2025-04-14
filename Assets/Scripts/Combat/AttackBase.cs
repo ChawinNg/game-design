@@ -12,9 +12,11 @@ public abstract class AttackBase : MonoBehaviour
     protected abstract void PostPerformAttack();
     public abstract void UpdateAimDirection(Vector3 direction);
 
+    public bool displayCooldown = false;
+
     public void DoPerformAttack()
     {
-        if (onCooldown) return;
+        if (onCooldown || holding) return;
         PerformAttack();
         holding = true;
     }
@@ -36,19 +38,27 @@ public abstract class AttackBase : MonoBehaviour
     {
         onCooldown = true;
 
-        float timer = 0f;
-
-        GameController.Instance.UpdateAttackCooldown(0f, cooldown);
-
-        while (timer < cooldown)
+        if (displayCooldown)
         {
-            timer += Time.deltaTime;
-            GameController.Instance.UpdateAttackCooldown(timer, cooldown);
+            float timer = 0f;
 
-            yield return null;
+            GameController.Instance.UpdateAttackCooldown(0f, cooldown);
+
+            while (timer < cooldown)
+            {
+                timer += Time.deltaTime;
+                GameController.Instance.UpdateAttackCooldown(timer, cooldown);
+
+                yield return null;
+            }
+
+            GameController.Instance.UpdateAttackCooldown(cooldown, cooldown);
+        }
+        else
+        {
+            yield return new WaitForSeconds(cooldown);
         }
 
-        GameController.Instance.UpdateAttackCooldown(cooldown, cooldown);
 
         onCooldown = false;
     }

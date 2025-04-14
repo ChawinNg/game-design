@@ -4,7 +4,7 @@ using UnityEngine;
 public class Move : MonoBehaviour, IKnockbackable
 {
     public float moveSpeed = 2f;
-    
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
@@ -37,7 +37,7 @@ public class Move : MonoBehaviour, IKnockbackable
 
     // Public method that other objects can call to move in a specific direction
     public void MoveInDirection(bool up, bool down, bool left, bool right)
-    {        
+    {
         moveInput = Vector2.zero; // If don't set, obj will move like it is on ice
 
         if (right)
@@ -46,44 +46,47 @@ public class Move : MonoBehaviour, IKnockbackable
             animator.SetFloat("y", 0f);
             animator.SetBool("Walk", true);
             moveInput += Vector2.right;
-            
-            if (up) 
+
+            if (up)
             {
                 moveInput += Vector2.up;
             }
-            if (down){
+            if (down)
+            {
                 moveInput += Vector2.down;
-            } 
-        } 
+            }
+        }
         else if (left)
         {
             animator.SetFloat("x", -1f);
             animator.SetFloat("y", 0f);
             animator.SetBool("Walk", true);
             moveInput += Vector2.left;
-            if (up) 
+            if (up)
             {
                 moveInput += Vector2.up;
             }
-            if (down){
+            if (down)
+            {
                 moveInput += Vector2.down;
-            } 
-        } 
+            }
+        }
         else
         {
             animator.SetFloat("x", 0f);
 
-            if (up) 
+            if (up)
             {
                 animator.SetFloat("y", 1f);
                 moveInput += Vector2.up;
                 animator.SetBool("Walk", true);
             }
-            if (down){
+            if (down)
+            {
                 animator.SetFloat("y", -1f);
                 moveInput += Vector2.down;
                 animator.SetBool("Walk", true);
-            } 
+            }
         }
     }
 

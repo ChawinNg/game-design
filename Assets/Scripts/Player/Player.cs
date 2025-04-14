@@ -209,7 +209,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             if (ShopTrigger.IsShopOpen) yield break;
             animator.SetTrigger("Slash");
-            // Attack();
+            Attack();
         }
         else if (Input.GetMouseButtonUp(0))
         {

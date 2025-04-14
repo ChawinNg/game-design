@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BowPrimary : AttackBase
 {
@@ -16,11 +17,16 @@ public class BowPrimary : AttackBase
     public float PerfectWindowInSecond = 0.1f;
 
     public GameObject PerfectDisplay;
+    public GameObject PerfectOutlineDisplay;
 
     private Vector3 aimmingDirection;
     private float startAttackingTime = 0f;
     private float finalSize = 0.5f;
     private bool isCharging = false;
+
+    [Header("Events")]
+    public UnityEvent onStartCharging;
+    public UnityEvent onStopCharging;
 
     public override void UpdateAimDirection(Vector3 direction)
     {
@@ -31,6 +37,10 @@ public class BowPrimary : AttackBase
     {
         startAttackingTime = Time.time;
         isCharging = true;
+
+        Debug.Log("---------- Start charging bow");
+        onStartCharging?.Invoke();
+
         StartCoroutine(ChargeRoutine());
     }
 
@@ -48,6 +58,7 @@ public class BowPrimary : AttackBase
         isCharging = false;
         startAttackingTime = 0f;
         PerfectDisplay.SetActive(false);
+        PerfectOutlineDisplay.SetActive(false);
     }
 
     private void Shoot(float multiplier)
@@ -60,6 +71,9 @@ public class BowPrimary : AttackBase
         arrows.Add(obj);
 
         StopHoldingAttack();
+
+        Debug.Log("---------- Stop charging bow");
+        onStopCharging?.Invoke();
     }
 
     private IEnumerator ChargeRoutine()
@@ -67,6 +81,7 @@ public class BowPrimary : AttackBase
         yield return new WaitForSeconds(PerfectTimingInSecond + PerfectWindowInSecond / 2.0f);
         isCharging = false;
         PerfectDisplay.SetActive(false);
+        PerfectOutlineDisplay.SetActive(false);
         Shoot(1f);
     }
 
@@ -77,6 +92,7 @@ public class BowPrimary : AttackBase
             float percent = Math.Clamp((PerfectTimingInSecond - PerfectWindowInSecond / 2f - (Time.time - startAttackingTime)) / (PerfectTimingInSecond - PerfectWindowInSecond / 2f), 0f, 1f);
             PerfectDisplay.transform.localScale = new Vector3((1f - percent) * finalSize, (1f - percent) * finalSize, 0);
             PerfectDisplay.SetActive(Time.time - startAttackingTime - PerfectTimingInSecond <= PerfectWindowInSecond / 2f);
+            PerfectOutlineDisplay.SetActive(Time.time - startAttackingTime - PerfectTimingInSecond <= PerfectWindowInSecond / 2f);
         }
     }
 }
