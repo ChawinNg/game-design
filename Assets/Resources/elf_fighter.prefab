@@ -263,7 +263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2989262492310327134}
-  currentWeapon: {fileID: 7061140442268728260}
+  Trishula: {fileID: 7061140442268728260}
+  Club: {fileID: 2791094771376948377}
+  Bow: {fileID: 2215668662778122182}
 --- !u!1 &2989262492310327123
 GameObject:
   m_ObjectHideFlags: 0

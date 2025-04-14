@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     public Image attackCooldownImage;
     public TMP_Text attackCooldownText;
 
+    public WeaponType CurrentWeapon;
+
     private void Awake()
     {
         if (Instance == null)
@@ -96,13 +98,16 @@ public class GameController : MonoBehaviour
 
     public void UpdateAttackCooldown(float timer, float attackCooldownDuration)
     {
-        if (timer == attackCooldownDuration) {
+        if (timer == attackCooldownDuration)
+        {
             attackCooldownImage.fillAmount = 1f;
             attackCooldownText.text = "";
             attackCooldownImage.color = Color.white;
-        } else {
+        }
+        else
+        {
             attackCooldownImage.fillAmount = timer / attackCooldownDuration;
-            attackCooldownText.text = (Mathf.Ceil((attackCooldownDuration-timer) * 10) / 10f).ToString("0.0");
+            attackCooldownText.text = (Mathf.Ceil((attackCooldownDuration - timer) * 10) / 10f).ToString("0.0");
             attackCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
         }
     }

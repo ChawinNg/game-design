@@ -1,10 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
 {
     public Transform playerTransform;
 
-    public Weapon currentWeapon;
+    public Weapon Trishula;
+    public Weapon Club;
+    public Weapon Bow;
+
+    private Weapon GetCurrentWeapon()
+    {
+        return GameController.Instance.CurrentWeapon switch
+        {
+            WeaponType.Trishula => Trishula,
+            WeaponType.Club => Club,
+            WeaponType.Bow => Bow,
+            _ => null,
+        };
+    }
 
     void Update()
     {
@@ -15,16 +29,16 @@ public class CombatSystem : MonoBehaviour
 
         Vector3 mouseVec = Projection.ProjectToOrthogonalSpace((mousePos - playerTransform.position).normalized);
 
-        currentWeapon.AimToDirection(mouseVec);
+        GetCurrentWeapon().AimToDirection(mouseVec);
     }
 
     public void PerformAttack(AttackType attackType)
     {
-        currentWeapon.PerformAttack(attackType);
+        GetCurrentWeapon().PerformAttack(attackType);
     }
 
     public void PostPerformAttack(AttackType attackType)
     {
-        currentWeapon.PostPerformAttack(attackType);
+        GetCurrentWeapon().PostPerformAttack(attackType);
     }
 }
