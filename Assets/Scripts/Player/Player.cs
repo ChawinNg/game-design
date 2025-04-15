@@ -79,6 +79,7 @@ public class Player : MonoBehaviour, IDamageable
             case "heal":
                 float healAmount = maxHealth * (value / 100f);
                 health = Mathf.Min(health + healAmount, maxHealth);
+                OnHealthChanged?.Invoke(health, maxHealth);
                 Debug.Log("Healed: " + healAmount + ", New Health: " + health);
                 break;
 
