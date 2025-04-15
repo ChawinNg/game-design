@@ -22,6 +22,9 @@ public class Player : MonoBehaviour, IDamageable
     public int armor = 30;
     public UnityAction<float, float> OnHealthChanged;
 
+    public int gold = 0;
+    public UnityAction<int> OnGoldChanged;
+
     private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
 
@@ -232,6 +235,29 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         yield return null;
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        OnGoldChanged?.Invoke(gold);
+        Debug.Log("Gold increased. Current gold: " + gold);
+    }
+
+    public bool SpendGold(int amount)
+    {
+        if (gold >= amount)
+        {
+            gold -= amount;
+            OnGoldChanged?.Invoke(gold);
+            Debug.Log("Gold spent: " + amount + ". Current gold: " + gold);
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough gold to spend. Current gold: " + gold);
+            return false;
+        }
     }
 
     // This function resets the player's state when the game starts or when Play Again is clicked

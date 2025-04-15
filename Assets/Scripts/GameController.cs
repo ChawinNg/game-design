@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     public Image attackCooldownImage;
     public TMP_Text attackCooldownText;
 
+    public TMP_Text goldText;
+
     public WeaponType CurrentWeapon;
 
     private void Awake()
@@ -51,6 +53,8 @@ public class GameController : MonoBehaviour
                 hpSlider.value = player.health;
 
                 player.OnHealthChanged += OnPlayerHealthChanged;
+                player.OnGoldChanged += UpdateGold;
+                UpdateGold(player.gold);
             }
 
             Debug.Log("Player spawned at: " + nextSpawnPosition + " in scene: " + scene.name);
@@ -111,5 +115,14 @@ public class GameController : MonoBehaviour
             attackCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
         }
     }
+
+    public void UpdateGold(int gold)
+    {
+        if (goldText != null)
+        {
+            goldText.text = gold.ToString("0");
+        }
+    }
+
 
 }
