@@ -12,8 +12,6 @@ public class GameController : MonoBehaviour
 
     public Image dashCooldownImage;
     public float dashCooldownDuration = 5f;
-    private bool canDash = true;
-    private float dashCooldownTimer = 0f;
     public TMP_Text dashCooldownText;
 
     public Image attackCooldownImage;
@@ -53,6 +51,7 @@ public class GameController : MonoBehaviour
                 hpSlider.value = player.health;
 
                 player.OnHealthChanged += OnPlayerHealthChanged;
+                player.OnDashCooldownChanged += UpdateDashCooldown;
                 player.OnGoldChanged += UpdateGold;
                 UpdateGold(player.gold);
             }
@@ -71,33 +70,20 @@ public class GameController : MonoBehaviour
         hpSlider.value = Mathf.Clamp(current, 0, max);
     }
 
-    private void Update()
+    public void UpdateDashCooldown(float timer, float max)
     {
-        if (!canDash)
+        if (timer <= 0f)
         {
-            dashCooldownTimer -= Time.deltaTime;
-            dashCooldownImage.fillAmount = (dashCooldownDuration - dashCooldownTimer) / dashCooldownDuration;
-            dashCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
-
-            dashCooldownText.text = (Mathf.Ceil(dashCooldownTimer * 10) / 10f).ToString("0.0");
-
-            if (dashCooldownTimer <= 0f)
-            {
-                dashCooldownTimer = 0f;
-                dashCooldownImage.fillAmount = 1f;
-                dashCooldownText.text = "";
-                dashCooldownImage.color = Color.white;
-                canDash = true;
-            }
+            dashCooldownImage.fillAmount = 1f;
+            dashCooldownText.text = "";
+            dashCooldownImage.color = Color.white;
         }
-    }
-
-    public void TriggerCooldown()
-    {
-        canDash = false;
-        dashCooldownTimer = dashCooldownDuration;
-        dashCooldownImage.fillAmount = 0f;
-        dashCooldownText.text = dashCooldownDuration.ToString("0.0");
+        else
+        {
+            dashCooldownImage.fillAmount = (max - timer) / max;
+            dashCooldownText.text = (Mathf.Ceil(timer * 10) / 10f).ToString("0.0");
+            dashCooldownImage.color = new Color(0.5f, 0.5f, 0.5f);
+        }
     }
 
     public void UpdateAttackCooldown(float timer, float attackCooldownDuration)

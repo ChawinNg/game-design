@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IDamageable
     public float dashCooldown = 5f;
     private bool canDash = true;
     private float dashCooldownTimer = 0f;
+    public UnityAction<float, float> OnDashCooldownChanged;
 
     public float maxHealth;
 
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour, IDamageable
             case "decrease_dash_cd":
                 float dec_cd = dashCooldown * (value / 100f);
                 dashCooldown -= dec_cd;
+                OnDashCooldownChanged?.Invoke(0f, dashCooldown);
                 Debug.Log("Decrease Cooldown: " + dashCooldown);
                 break;
         }
@@ -122,11 +124,11 @@ public class Player : MonoBehaviour, IDamageable
     void StartDash()
     {
         if (!canDash) return;
-
         canDash = false;
         dashCooldownTimer = dashCooldown;
-        GameController.Instance.TriggerCooldown();
-        // **Increase Move Speed for Dash**
+
+        OnDashCooldownChanged?.Invoke(dashCooldownTimer, dashCooldown);
+
         moveScript.moveSpeed *= dashSpeedMultiplier;
 
         Invoke(nameof(EndDash), dashDuration);
@@ -141,7 +143,9 @@ public class Player : MonoBehaviour, IDamageable
     void ResetDash()
     {
         canDash = true;
+        OnDashCooldownChanged?.Invoke(0f, dashCooldown);
     }
+
 
     void UpdateUI()
     {
@@ -233,6 +237,9 @@ public class Player : MonoBehaviour, IDamageable
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
+            dashCooldownTimer = Mathf.Max(0f, dashCooldownTimer);
+
+            OnDashCooldownChanged?.Invoke(dashCooldownTimer, dashCooldown);
         }
 
         yield return null;
