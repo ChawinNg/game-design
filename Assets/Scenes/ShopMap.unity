@@ -7479,6 +7479,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b56297b8979e747816dd2ece5a2cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healSprite: {fileID: 1393059126, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  speedSprite: {fileID: 1125875574, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  dashSprite: {fileID: 1365420433, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  maxHpSprite: {fileID: 115662879, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  goldSprite: {fileID: -2066988012, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
 --- !u!1 &1644893024
 GameObject:
   m_ObjectHideFlags: 0
@@ -7617,6 +7622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
+  displayCooldown: 0
   Rain: {fileID: 645922740127598703, guid: 6381c6d9a13303e4fb6546c5d3617717, type: 3}
   baseDamage: 1
 --- !u!1 &1698759064

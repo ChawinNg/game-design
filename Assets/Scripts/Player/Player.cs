@@ -13,17 +13,22 @@ public class Player : MonoBehaviour, IDamageable
     public float dashSpeedMultiplier = 3f; // Dash is 3x normal speed
     public float dashDuration = 0.2f;
     public float dashCooldown = 5f;
+    private float baseDashCooldown = 5f;
     private bool canDash = true;
     private float dashCooldownTimer = 0f;
     public UnityAction<float, float> OnDashCooldownChanged;
 
+    private float baseMoveSpeed = 2f;
+
     public float maxHealth;
+    private float baseMaxHealth = 100f;
 
     public float health;
     public int armor = 30;
     public UnityAction<float, float> OnHealthChanged;
 
     public int gold = 0;
+    public float goldMult = 1;
     public UnityAction<int> OnGoldChanged;
 
     private BoxCollider2D playerCollider;
@@ -95,6 +100,41 @@ public class Player : MonoBehaviour, IDamageable
                 dashCooldown -= dec_cd;
                 OnDashCooldownChanged?.Invoke(0f, dashCooldown);
                 Debug.Log("Decrease Cooldown: " + dashCooldown);
+                break;
+
+            case "increase_max_hp":
+                maxHealth += value;
+                Debug.Log("New Max Health: " + maxHealth);
+                break;
+
+            case "gold_mult":
+                float increase = goldMult * (value/100f);
+                goldMult += increase;
+                Debug.Log("Gold Multiplier: " + goldMult);
+                break;
+
+            case "increase_base_max_hp":
+                baseMaxHealth += value;
+                maxHealth = baseMaxHealth;
+                health = maxHealth;
+                OnHealthChanged?.Invoke(health, maxHealth);
+                Debug.Log("New Base Max Health: " + baseMaxHealth);
+                Debug.Log("New Max Health: " + maxHealth);
+                Debug.Log("New Health: " + health);
+                break;
+
+            case "increase_base_dash_cooldown":
+                baseDashCooldown -= value;
+                dashCooldown = baseDashCooldown;
+                Debug.Log("New Base Dash Cooldown: " + baseDashCooldown);
+                Debug.Log("New Dash Cooldown: " + dashCooldown);
+                break;
+
+            case "increase_base_move_speed":
+                baseMoveSpeed += value;
+                moveScript.moveSpeed = baseMoveSpeed;
+                Debug.Log("New Base Move Speed: " + baseMoveSpeed);
+                Debug.Log("New Move Speed: " + moveScript.moveSpeed);
                 break;
         }
     }
@@ -247,7 +287,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void AddGold(int amount)
     {
-        gold += amount;
+        gold += amount * (int)Mathf.Floor(goldMult);
         OnGoldChanged?.Invoke(gold);
         Debug.Log("Gold increased. Current gold: " + gold);
     }
@@ -271,16 +311,19 @@ public class Player : MonoBehaviour, IDamageable
     // This function resets the player's state when the game starts or when Play Again is clicked
     public void ResetPlayer()
     {
+        maxHealth = baseMaxHealth;
         health = maxHealth; // Reset health to max
         armor = 30; // Reset armor (or set to any default value)
-        moveScript.moveSpeed = 2f; // Reset movement speed (or any default value)
+        moveScript.moveSpeed = baseMoveSpeed; // Reset movement speed (or any default value)
 
         // Reset any other player-related states here (such as dash cooldown, etc.)
+        dashCooldown = baseDashCooldown;
         dashCooldownTimer = 0f;
         canDash = true;
 
         OnHealthChanged?.Invoke(health, maxHealth);
 
         Debug.Log("Player state reset: Health: " + health + " Armor: " + armor + " Speed: " + moveScript.moveSpeed);
+        Debug.Log("Player base stat Base Health: " + baseMaxHealth + " Base Dash: " + baseDashCooldown + " Base Speed: " + baseMoveSpeed);
     }
 }
