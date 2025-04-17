@@ -86,8 +86,10 @@ public class StatsShop : MonoBehaviour
             uiButton.onClick.RemoveAllListeners(); // Clean old listeners
             uiButton.onClick.AddListener(() =>
             {
-                Debug.Log("Bought: " + shopItem.name);
-                FindObjectOfType<Player>()?.UpdateStat(shopItem.stat, shopItem.value);
+                if(FindObjectOfType<Player>()?.SpendGold(shopItem.cost) == true){
+                    Debug.Log("Bought: " + shopItem.name);
+                    FindObjectOfType<Player>()?.UpdateStat(shopItem.stat, shopItem.value);
+                }
             });
         }
     }

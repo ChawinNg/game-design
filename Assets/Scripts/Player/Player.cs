@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IDamageable
     public int armor = 30;
     public UnityAction<float, float> OnHealthChanged;
 
-    public int gold = 0;
+    public int gold = 1000;
     public float goldMult = 1;
     public UnityAction<int> OnGoldChanged;
 
@@ -272,6 +272,11 @@ public class Player : MonoBehaviour, IDamageable
         else if (Input.GetMouseButtonUp(1))
         {
             PostUseWeaponSkill();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            AddGold(100);
         }
 
         if (!canDash)

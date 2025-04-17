@@ -133,12 +133,14 @@ public class UI_Shop : MonoBehaviour
             uiButton.onClick.RemoveAllListeners(); // Clean old listeners
             uiButton.onClick.AddListener(() =>
             {
-                Debug.Log("Bought: " + shopItem.name);
-                FindObjectOfType<Player>()?.UpdateStat(shopItem.stat, shopItem.value);
-                uiButton.interactable = false; // Disable button after purchase
-                SafeSetActive(itemTransform, "Price", false);
-                SafeSetActive(itemTransform, "PriceIcon", false);
-                SafeSetActive(itemTransform, "PriceBg", false);
+                if(FindObjectOfType<Player>()?.SpendGold(shopItem.cost) == true){
+                    Debug.Log("Bought: " + shopItem.name);
+                    FindObjectOfType<Player>()?.UpdateStat(shopItem.stat, shopItem.value);
+                    uiButton.interactable = false; // Disable button after purchase
+                    SafeSetActive(itemTransform, "Price", false);
+                    SafeSetActive(itemTransform, "PriceIcon", false);
+                    SafeSetActive(itemTransform, "PriceBg", false);
+                }
             }); 
         }
     }
