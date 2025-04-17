@@ -545,9 +545,11 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashDuration: 0.2
   dashCooldown: 5
-  maxHealth: 5000
+  maxHealth: 500000
   health: 5000
   armor: 30
+  gold: 1000
+  goldMult: 1
 --- !u!114 &3060800453956762900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,7 +1599,7 @@ MonoBehaviour:
   cooldown: 0.25
   displayCooldown: 0
   hitbox: {fileID: 6534956107884715209}
-  baseDamage: 10
+  baseDamage: 1000000
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: HostileEnemy

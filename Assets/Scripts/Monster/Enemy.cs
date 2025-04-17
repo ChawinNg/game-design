@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public bool haveFlipInAnimation = true;
     public FloatingHealthBar healthBar; // Reference to the health bar UI
+    NavMeshAgent agent; // Reference to the NavMeshAgent component
     void Start()
     {
         if (animator == null)
@@ -46,11 +48,19 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             moveScript = GetComponent<Move>();
         }
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false; // Disable automatic rotation
+            agent.updateUpAxis = false; // Disable automatic up axis adjustment
+        }
     }
 
     void Update()
     {
         if (isAttacking) return;
+        
+        agent.SetDestination(player.position); // Set the destination to the player's position
         // Get the direction to the player
         directionToPlayer = (player.position - transform.position).normalized;
 
@@ -93,7 +103,7 @@ public class Enemy : MonoBehaviour, IDamageable
                 
             }
             // Move in the determined direction (supports diagonal movement)
-            moveScript.MoveInDirection(moveUp, moveDown, moveLeft, moveRight);
+            moveScript.LookInDirection(moveUp, moveDown, moveLeft, moveRight);
         }
     }
 

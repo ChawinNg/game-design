@@ -90,6 +90,40 @@ public class Move : MonoBehaviour, IKnockbackable
         }
     }
 
+    public void LookInDirection(bool up, bool down, bool left, bool right)
+    {        
+
+        if (right)
+        {
+            animator.SetFloat("x", 1f);
+            animator.SetFloat("y", 0f);
+            animator.SetBool("Walk", true);
+
+        } 
+        else if (left)
+        {
+            animator.SetFloat("x", -1f);
+            animator.SetFloat("y", 0f);
+            animator.SetBool("Walk", true);
+
+        } 
+        else
+        {
+            animator.SetFloat("x", 0f);
+
+            if (up) 
+            {
+                animator.SetFloat("y", 1f);
+                animator.SetBool("Walk", true);
+            }
+            if (down){
+                animator.SetFloat("y", -1f);
+                animator.SetBool("Walk", true);
+            } 
+        }
+    }
+
+
     public void TakingKnockback(Vector3 force, float second)
     {
         isBeingKnockback = true;
