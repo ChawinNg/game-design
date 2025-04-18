@@ -3672,11 +3672,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: health
-      value: 100
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1173119775}
+    - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 50000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7151,6 +7155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1173119774}
   - component: {fileID: 1173119773}
+  - component: {fileID: 1173119775}
   m_Layer: 0
   m_Name: HPBar
   m_TagString: Untagged
@@ -7203,9 +7208,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 200
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 200
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7230,6 +7235,18 @@ RectTransform:
   m_AnchoredPosition: {x: -638.5714, y: 446.29416}
   m_SizeDelta: {x: -1350.343, y: -956.7883}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1173119775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173119772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a811f85edf0fd44baf8e80c121bead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1182913120
 GameObject:
   m_ObjectHideFlags: 0
