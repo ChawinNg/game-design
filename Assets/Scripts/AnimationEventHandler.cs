@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    public UnityEvent<AttackType> OnAttack;
+    public UnityEvent<AttackType> OnAttack, PostAttack;
     public Enemy enemy; // Reference to the enemy script
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,5 +35,6 @@ public class AnimationEventHandler : MonoBehaviour
         if(enemy != null){
             enemy.SetAttackState(false,Time.time);
         }
+        PostAttack?.Invoke(AttackType.Primary);
     }
 }

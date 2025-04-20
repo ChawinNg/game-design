@@ -57,7 +57,7 @@ public class TrishulaPrimary : AttackBase
         foreach (GameObject obj in objects)
         {
             if (!obj.CompareTag(attackabletag)) continue;
-            Debug.Log($"Hit: ");
+            
             obj.GetComponent<IDamageable>()?.OnTakingDamage(baseDamage);
             IKnockbackable knockbackable = obj.GetComponent<IKnockbackable>();
             if (knockbackable != null)
