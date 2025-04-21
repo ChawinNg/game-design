@@ -55,6 +55,11 @@ public class GameOver : MonoBehaviour
         
         // Hide game over UI
         HideGameOverScreen();
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        Player player = playerObj.GetComponent<Player>();
+
+        GameObject gameControllerObj = GameObject.Find("GameController");
         
         // Store references to our own hierarchy before destruction
         GameObject canvasObj = gameOverCanvas?.gameObject;
@@ -66,8 +71,15 @@ public class GameOver : MonoBehaviour
         foreach (GameObject obj in persistentObjects)
         {
             // Check if it's in the DontDestroyOnLoad scene, not this gameObject, and not a child of this gameObject
-            if (obj.scene.name == "DontDestroyOnLoad" && obj != this.gameObject && 
-                obj != canvasObj && obj != screenObj && !obj.transform.IsChildOf(this.transform))
+            if (obj.scene.name == "DontDestroyOnLoad" &&
+                obj != this.gameObject &&
+                obj != canvasObj &&
+                obj != screenObj &&
+                obj != playerObj &&
+                obj != gameControllerObj &&
+                !obj.transform.IsChildOf(this.transform) &&
+                !obj.transform.IsChildOf(playerObj.transform) &&
+                !obj.transform.IsChildOf(gameControllerObj.transform))
             {
                 Debug.Log($"Cleaning up persistent object: {obj.name}");
                 Destroy(obj);
@@ -79,7 +91,7 @@ public class GameOver : MonoBehaviour
         
         // Load the first scene in build settings
         SceneManager.LoadScene("HomeMapV2");
-        
+        player.ResetHealth();
         // We don't destroy this object, so it stays with all its children intact
         // This is important if you want to keep the GameOver hierarchy available
     }
