@@ -11,6 +11,8 @@ public class ThrowableTrishula : MonoBehaviour
     public float knockbackForce = 10f;
     public float knockbackTime = 0.25f;
 
+    public string attackabletag = "HostileEnemy";
+
     void FixedUpdate()
     {
         GetComponent<Transform>().Translate(Velocity * Time.fixedDeltaTime);
@@ -24,7 +26,7 @@ public class ThrowableTrishula : MonoBehaviour
 
         foreach (GameObject obj in objects)
         {
-            if (!obj.CompareTag("HostileEnemy")) continue;
+            if (!obj.CompareTag(attackabletag)) continue;
 
             isHit = true;
 
@@ -39,8 +41,6 @@ public class ThrowableTrishula : MonoBehaviour
         if (isHit)
         {
             Destroy(gameObject);
-            Debug.Log("Destroy!");
-
         }
     }
 }

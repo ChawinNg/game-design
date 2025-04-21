@@ -3672,7 +3672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: health
-      value: 50000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: healthBar
@@ -3680,7 +3680,7 @@ PrefabInstance:
       objectReference: {fileID: 1173119775}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: maxHealth
-      value: 50000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

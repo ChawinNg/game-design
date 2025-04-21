@@ -545,8 +545,8 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashDuration: 0.2
   dashCooldown: 5
-  maxHealth: 1000
-  health: 1000
+  maxHealth: 100
+  health: 100
   armor: 30
   gold: 1000
   goldMult: 1
@@ -683,7 +683,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  enemy: {fileID: 0}
+  PostAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3195592481336137090
 GameObject:
   m_ObjectHideFlags: 0

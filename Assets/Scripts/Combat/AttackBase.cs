@@ -62,4 +62,14 @@ public abstract class AttackBase : MonoBehaviour
 
         onCooldown = false;
     }
+
+    public bool CanPerformAttack()
+    {
+        return !onCooldown && !holding;
+    }
+
+    public bool IsPerformingAttack()
+    {
+        return holding;
+    }
 }

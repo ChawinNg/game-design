@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27243c45fb430b74c8c53f3826ce1d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 5
   displayCooldown: 0
-  Throwable: {fileID: 5422448823268907183, guid: dac702172338b4a4ebe74cfe93bb1181, type: 3}
+  Throwable: {fileID: 5422448823268907183, guid: d380d0cbe006d9746ad03e124051dcad, type: 3}
   ThrowableSpeed: 7
 --- !u!1 &3028321498036549848
 GameObject:
@@ -466,13 +466,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveScript: {fileID: 9113329084535439921}
   stopDistance: 0.5
+  startRangeAttackDistance: 4
+  stopRangeAttackDistance: 8
   attackInterval: 1
   animator: {fileID: 2296836262674418761}
   maxHealth: 100
   enemyRenderer: {fileID: 0}
   animationEventHandler: {fileID: 1455153250746213848}
-  haveFlipInAnimation: 1
+  isBoss: 0
   healthBar: {fileID: 6729241140055340052}
+  weapon: {fileID: 1130846249436372513}
 --- !u!114 &9113329084535439921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +624,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  enemy: {fileID: 4167382561516533354}
 --- !u!195 &1065672933609230306
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -740,7 +742,7 @@ MonoBehaviour:
   cooldown: 0.25
   displayCooldown: 0
   hitbox: {fileID: 7293920697594274099}
-  baseDamage: 10
+  baseDamage: 5
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: Player

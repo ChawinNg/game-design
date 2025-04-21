@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public Move moveScript;   // Reference to the Move script (to control movement)
     public float stopDistance = 0.5f; // Minimum distance before stopping movement
+
+    public float startRangeAttackDistance = 3f; // Distance to start range attack
+    public float stopRangeAttackDistance = 8f; // Distance to start range attack
+
     public float attackInterval = 3f;
     public Animator animator;
     // public UnityEvent<AttackType> OnAttack;
@@ -18,15 +22,14 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Vector2 directionToPlayer;  // Direction vector towards player
     private Transform player;  // Reference to the player's Transform (position)
-    private float lastAttackTime = 0f;
     public SpriteRenderer enemyRenderer; // For Boss
 
     public AnimationEventHandler animationEventHandler;
-    private bool isAttacking = false; 
-
-    public bool haveFlipInAnimation = true;
+    public bool isBoss = false;
     public FloatingHealthBar healthBar; // Reference to the health bar UI
     NavMeshAgent agent; // Reference to the NavMeshAgent component
+
+    public Weapon weapon;
     void Start()
     {
         if (animator == null)
@@ -58,9 +61,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (isAttacking) return;
+        if (weapon.IsPerformingAttack()) return;
         
-        agent.SetDestination(player.position); // Set the destination to the player's position
         // Get the direction to the player
         directionToPlayer = (player.position - transform.position).normalized;
 
@@ -76,18 +78,27 @@ public class Enemy : MonoBehaviour, IDamageable
         if (distanceToPlayer < stopDistance)
         {
             moveScript.ResetMove(); // Stop movement
-
-            if (Time.time - lastAttackTime >= attackInterval)
+            agent.ResetPath();
+            
+        
+            if (weapon.CanPerformAttack())
             {
-                // Debug.Log($"Attacking! {Time.time} - {lastAttackTime} >= {attackInterval}");
-                isAttacking = true;
-
                 StartCoroutine(Attack());
-            }
+            } 
+        }
+        else  if (distanceToPlayer > startRangeAttackDistance && distanceToPlayer < stopRangeAttackDistance)
+        {
+            moveScript.ResetMove(); // Stop movement
+            agent.ResetPath();
+
+            if (weapon.CanPerformAttack())
+            {
+                StartCoroutine(RangeAttack());
+            } 
         }
         else
-        {
-            if (!haveFlipInAnimation){
+        {  
+            if (isBoss){
                 if(!enemyRenderer.flipX && moveRight){
                     enemyRenderer.flipX = true;
                     Vector3 spriteLocalPosition = enemyRenderer.transform.localPosition;
@@ -102,8 +113,10 @@ public class Enemy : MonoBehaviour, IDamageable
                 }
                 
             }
-            // Move in the determined direction (supports diagonal movement)
             moveScript.LookInDirection(moveUp, moveDown, moveLeft, moveRight);
+            // Move in the determined direction (supports diagonal movement)
+            agent.SetDestination(player.position); // Set the destination to the player's position
+
         }
     }
 
@@ -120,14 +133,6 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void SetAttackState(bool isAttacking, float lastAttackTime)
-    {
-        this.isAttacking = isAttacking;
-        this.lastAttackTime = lastAttackTime;
-        // Debug.Log($"State set: isAttacking = {isAttacking}, lastAttackTime = {lastAttackTime}, currentTime = {Time.time}");
-
-    }
-
     private IEnumerator FlashRed()
     {
         enemyRenderer.material.color = Color.red;
@@ -138,6 +143,12 @@ public class Enemy : MonoBehaviour, IDamageable
     private IEnumerator Attack()
     {
         animator.SetTrigger("Slash");
+        yield return null;
+    }
+
+    private IEnumerator RangeAttack()
+    {
+        animator.SetTrigger("Bow");
         yield return null;
     }
 }

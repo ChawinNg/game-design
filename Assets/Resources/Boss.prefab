@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2960712062795453572}
+  - {fileID: 5809834944051372602}
   m_Father: {fileID: 3229081480874004024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &240555645466936090
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryAttack: {fileID: 1546567084837430119}
-  secondaryAttack: {fileID: 0}
+  secondaryAttack: {fileID: 1879564505981546510}
 --- !u!1 &1521867019492225976
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,13 +259,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveScript: {fileID: 2918887222319323170}
   stopDistance: 1.2
+  startRangeAttackDistance: 3
+  stopRangeAttackDistance: 8
   attackInterval: 1.5
   animator: {fileID: 60956738337191518}
-  maxHealth: 1000
+  maxHealth: 500
   enemyRenderer: {fileID: 7362311627613563753}
   animationEventHandler: {fileID: 9208582310219661496}
-  haveFlipInAnimation: 0
+  isBoss: 1
   healthBar: {fileID: 2774295860634314734}
+  weapon: {fileID: 5154432222052738180}
 --- !u!114 &2918887222319323170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +453,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a811f85edf0fd44baf8e80c121bead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4486279595238983422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5809834944051372602}
+  - component: {fileID: 1879564505981546510}
+  m_Layer: 0
+  m_Name: Secondary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5809834944051372602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486279595238983422}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42566666, y: -0.126, z: 0}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1813238795581669490}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879564505981546510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486279595238983422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b1dac3760089545b2a9d09bd137fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  displayCooldown: 0
+  Spell: {fileID: 645922740127598703, guid: 417f05963ac4c564cadacd11e23f3f74, type: 3}
+  baseDamage: 10
 --- !u!1 &5955595319510812116
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +866,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  enemy: {fileID: -4919416624383699716}
 --- !u!1 &7694146699431906811
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +989,7 @@ MonoBehaviour:
   cooldown: 0.25
   displayCooldown: 0
   hitbox: {fileID: 7380748867366824401}
-  baseDamage: 10
+  baseDamage: 20
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: Player
