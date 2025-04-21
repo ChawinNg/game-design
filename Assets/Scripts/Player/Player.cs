@@ -313,18 +313,10 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    // This function resets the player's state when the game starts or when Play Again is clicked
-    public void ResetPlayer()
+    public void ResetHealth()
     {
-        maxHealth = baseMaxHealth;
-        health = maxHealth; // Reset health to max
-        armor = 30; // Reset armor (or set to any default value)
-        moveScript.moveSpeed = baseMoveSpeed; // Reset movement speed (or any default value)
-
-        // Reset any other player-related states here (such as dash cooldown, etc.)
-        dashCooldown = baseDashCooldown;
-        dashCooldownTimer = 0f;
-        canDash = true;
+        maxHealth = maxHealth;
+        health = maxHealth;
 
         OnHealthChanged?.Invoke(health, maxHealth);
 
