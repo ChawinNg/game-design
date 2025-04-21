@@ -550,6 +550,7 @@ MonoBehaviour:
   armor: 30
   gold: 1000
   goldMult: 1
+  combatSystem: {fileID: 3926392458269683897}
 --- !u!114 &3060800453956762900
 MonoBehaviour:
   m_ObjectHideFlags: 0

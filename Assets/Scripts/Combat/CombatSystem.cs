@@ -20,6 +20,17 @@ public class CombatSystem : MonoBehaviour
         };
     }
 
+    private string GetWeaponAnimationTrigger()
+    {
+        return GameController.Instance.CurrentWeapon switch
+        {
+            WeaponType.Trishula => "Slash",
+            WeaponType.Club => "Slash",
+            WeaponType.Bow => "Bow",
+            _ => null,
+        };
+    }
+
     void Update()
     {
         Vector3 pos = Input.mousePosition;
@@ -40,5 +51,15 @@ public class CombatSystem : MonoBehaviour
     public void PostPerformAttack(AttackType attackType)
     {
         GetCurrentWeapon().PostPerformAttack(attackType);
+    }
+
+    public bool CanPerformAttack()
+    {
+        return  GetCurrentWeapon().CanPerformAttack();
+    }
+
+    public bool IsPerformingAttack()
+    {
+        return GetCurrentWeapon().IsPerformingAttack();
     }
 }

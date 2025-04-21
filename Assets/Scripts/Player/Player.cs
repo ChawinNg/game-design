@@ -34,6 +34,8 @@ public class Player : MonoBehaviour, IDamageable
     private BoxCollider2D playerCollider;
     private Renderer playerRenderer;
 
+    public CombatSystem combatSystem;
+
     void Awake()
     {
         if (GameObject.FindWithTag("Player") != null && GameObject.FindWithTag("Player") != gameObject)
@@ -141,6 +143,10 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        StartCoroutine(Action());
+
+        // if(combatSystem.IsPerformingAttack()) return;
+        
         // Get movement input for all directions
         bool moveUp = Input.GetKey(KeyCode.W);
         bool moveDown = Input.GetKey(KeyCode.S);
@@ -157,8 +163,6 @@ public class Player : MonoBehaviour, IDamageable
             moveScript.ResetMove();
         }
 
-        StartCoroutine(Action());
-        UpdateUI();
     }
 
     void StartDash()
@@ -241,6 +245,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private IEnumerator FlashRed()
     {
+        animator.SetTrigger("Damage");
         playerRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         playerRenderer.material.color = Color.white;

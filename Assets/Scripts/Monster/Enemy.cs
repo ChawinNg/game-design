@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public Weapon weapon;
 
     public int goldDropAmount;
+
+    private bool isTakingDamage = false;
     void Start()
     {
         if (animator == null)
@@ -63,7 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (weapon.IsPerformingAttack()) return;
+        if (weapon.IsPerformingAttack() || isTakingDamage) return;
         
         // Get the direction to the player
         directionToPlayer = (player.transform.position - transform.position).normalized;
@@ -125,6 +127,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void OnTakingDamage(float amount)
     {
         health -= amount;
+        isTakingDamage = true;
         StartCoroutine(FlashRed());
         if (health <= 0)
         {
@@ -138,9 +141,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private IEnumerator FlashRed()
     {
+        animator.SetTrigger("Damage");
         enemyRenderer.material.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         enemyRenderer.material.color = Color.white;
+        isTakingDamage = false;
     }
 
     private IEnumerator Attack()
