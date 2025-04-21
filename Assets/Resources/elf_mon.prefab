@@ -476,6 +476,7 @@ MonoBehaviour:
   isBoss: 0
   healthBar: {fileID: 6729241140055340052}
   weapon: {fileID: 1130846249436372513}
+  goldDropAmount: 10
 --- !u!114 &9113329084535439921
 MonoBehaviour:
   m_ObjectHideFlags: 0

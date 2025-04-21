@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float health;
 
     private Vector2 directionToPlayer;  // Direction vector towards player
-    private Transform player;  // Reference to the player's Transform (position)
+    private GameObject player;  // Reference to the player's Transform (position)
     public SpriteRenderer enemyRenderer; // For Boss
 
     public AnimationEventHandler animationEventHandler;
@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour, IDamageable
     NavMeshAgent agent; // Reference to the NavMeshAgent component
 
     public Weapon weapon;
+
+    public int goldDropAmount;
     void Start()
     {
         if (animator == null)
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable
         // Optionally, get references dynamically if not set in Inspector
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player");
         }
 
         if (moveScript == null)
@@ -64,10 +66,10 @@ public class Enemy : MonoBehaviour, IDamageable
         if (weapon.IsPerformingAttack()) return;
         
         // Get the direction to the player
-        directionToPlayer = (player.position - transform.position).normalized;
+        directionToPlayer = (player.transform.position - transform.position).normalized;
 
         // Check the distance between the object and the player
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
         // Determine movement direction
         bool moveUp = directionToPlayer.y > 0.1f;
@@ -115,7 +117,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
             moveScript.LookInDirection(moveUp, moveDown, moveLeft, moveRight);
             // Move in the determined direction (supports diagonal movement)
-            agent.SetDestination(player.position); // Set the destination to the player's position
+            agent.SetDestination(player.transform.position); // Set the destination to the player's position
 
         }
     }
@@ -126,6 +128,7 @@ public class Enemy : MonoBehaviour, IDamageable
         StartCoroutine(FlashRed());
         if (health <= 0)
         {
+            player.GetComponent<Player>().AddGold(goldDropAmount);
             Destroy(gameObject);
         }
         else{
