@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static Vector3 nextSpawnPosition = new Vector3(-2, -1, 0);
 
     public Slider hpSlider;
+    public TMP_Text hpText;
 
     public Image dashCooldownImage;
     public float dashCooldownDuration = 5f;
@@ -49,6 +50,7 @@ public class GameController : MonoBehaviour
             {
                 hpSlider.maxValue = player.maxHealth;
                 hpSlider.value = player.health;
+                hpText.text = $"{player.health} / {player.maxHealth}";
 
                 player.OnHealthChanged += OnPlayerHealthChanged;
                 player.OnDashCooldownChanged += UpdateDashCooldown;
@@ -68,6 +70,11 @@ public class GameController : MonoBehaviour
     {
         hpSlider.maxValue = max;
         hpSlider.value = Mathf.Clamp(current, 0, max);
+
+        if (hpText != null)
+        {
+            hpText.text = $"{current} / {max}";
+        }
     }
 
     public void UpdateDashCooldown(float timer, float max)
