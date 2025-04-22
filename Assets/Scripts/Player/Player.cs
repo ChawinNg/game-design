@@ -18,6 +18,9 @@ public class Player : MonoBehaviour, IDamageable
     private float dashCooldownTimer = 0f;
     public UnityAction<float, float> OnDashCooldownChanged;
 
+    private bool isBuyClub = false;
+    private bool isBuyBow = false;
+
     private float baseMoveSpeed = 2f;
 
     public float maxHealth;
@@ -316,6 +319,24 @@ public class Player : MonoBehaviour, IDamageable
             Debug.Log("Not enough gold to spend. Current gold: " + gold);
             return false;
         }
+    }
+
+    public bool GetBuyClub(){
+        return (bool)isBuyClub;
+    }
+
+    public bool GetBuyBow(){
+        return (bool)isBuyBow;
+    }
+
+    public void BuyClub(){
+        Debug.Log("buying club in player");
+        isBuyClub = true;
+    }
+
+    public void BuyBow(){
+        Debug.Log("buying bow in player");
+        isBuyBow = true;
     }
 
     public void ResetHealth()

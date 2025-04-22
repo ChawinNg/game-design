@@ -3673,7 +3673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: health
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: healthBar
@@ -3681,7 +3681,7 @@ PrefabInstance:
       objectReference: {fileID: 1173119775}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4734,6 +4734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertModal: {fileID: 225987378}
   weapon: 2
+  price: 500
 --- !u!66 &866527555
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -5512,6 +5513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertModal: {fileID: 225987378}
   weapon: 1
+  price: 200
 --- !u!66 &932529720
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -7282,6 +7284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertModal: {fileID: 225987378}
   weapon: 0
+  price: 0
 --- !u!1 &1173119772
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class SceneTeleport : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        if (EnemyManager.Instance != null && !EnemyManager.Instance.CanTeleport && !isShop)
+        if (EnemyManager.Instance != null && !EnemyManager.Instance.CanTeleport)
             return;
 
         string currentScene = SceneManager.GetActiveScene().name;
