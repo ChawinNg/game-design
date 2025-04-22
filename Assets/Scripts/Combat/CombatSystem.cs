@@ -53,9 +53,9 @@ public class CombatSystem : MonoBehaviour
         GetCurrentWeapon().PostPerformAttack(attackType);
     }
 
-    public bool CanPerformAttack()
+    public bool CanPerformAttack(AttackType attackType)
     {
-        return  GetCurrentWeapon().CanPerformAttack();
+        return  GetCurrentWeapon().CanPerformAttack(attackType);
     }
 
     public bool IsPerformingAttack()

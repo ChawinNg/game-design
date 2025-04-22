@@ -23,6 +23,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected float distanceToPlayer;
     protected bool moveUp, moveDown, moveRight, moveLeft;
     protected bool addedGold = false;
+
     void Start()
     {
         health = maxHealth;
@@ -42,8 +43,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (weapon.IsPerformingAttack() || isTakingDamage) return;
-        
+        // if (weapon.IsPerformingAttack() || isTakingDamage) return;
+        if (weapon.IsPerformingAttack()) return;
+
         // Get the direction to the player
         directionToPlayer = (player.transform.position - transform.position).normalized;
 
@@ -64,6 +66,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void OnTakingDamage(float amount)
     {
+        moveScript.ResetMove();
         health -= amount;
         isTakingDamage = true;
         StartCoroutine(FlashRed());
@@ -83,13 +86,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected IEnumerator FlashRed()
     {
-        animator.SetTrigger("Damage");
+        // animator.SetTrigger("Damage");
         enemyRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.6f);
         enemyRenderer.material.color = Color.white;
-        isTakingDamage = false;
+        // isTakingDamage = false;
     }
-
     protected IEnumerator Attack()
     {
         animator.SetTrigger("Slash");
@@ -112,7 +114,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected abstract void Move();
     protected abstract bool InAttackCondition();
-
     protected abstract void PerformAttack();
 
 }

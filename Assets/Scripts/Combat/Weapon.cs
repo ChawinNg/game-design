@@ -36,15 +36,20 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public bool CanPerformAttack(){
-        bool canPerform = primaryAttack != null && secondaryAttack != null && primaryAttack.CanPerformAttack() && secondaryAttack.CanPerformAttack();
-        // Debug.Log($"Can Perform Attack: {canPerform}");
-        return canPerform;
+    public bool CanPerformAttack(AttackType type){
+        switch (type)
+        {
+            case AttackType.Primary:
+                return primaryAttack?.CanPerformAttack() ?? false;
+            case AttackType.Secondary:
+                return secondaryAttack?.CanPerformAttack() ?? false;
+            default:
+                return false;
+        }
     }
 
     public bool IsPerformingAttack(){
-        bool IsPerforming = primaryAttack != null && secondaryAttack != null && (primaryAttack.IsPerformingAttack() && secondaryAttack.IsPerformingAttack());
-        // Debug.Log($"Is Performing Attack: {IsPerforming}");
+        bool IsPerforming = primaryAttack != null && secondaryAttack != null && (primaryAttack.IsPerformingAttack() || secondaryAttack.IsPerformingAttack());
         return IsPerforming;
     }
 }

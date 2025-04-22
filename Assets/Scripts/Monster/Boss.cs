@@ -34,16 +34,13 @@ public class Boss : Enemy
         moveScript.ResetMove(); // Stop movement
         agent.ResetPath();
     
-        if (weapon.CanPerformAttack())
+        if(distanceToPlayer < stopDistance && weapon.CanPerformAttack(AttackType.Primary))
         {
-            if(distanceToPlayer < stopDistance)
-            {
-                StartCoroutine(Attack());
-            }
-            else
-            {
-                StartCoroutine(RangeAttack());
-            }
-        } 
+            StartCoroutine(Attack());
+        }
+        else if((distanceToPlayer > startRangeAttackDistance && distanceToPlayer < stopRangeAttackDistance) && weapon.CanPerformAttack(AttackType.Secondary))
+        {
+            StartCoroutine(RangeAttack());
+        }
     }
 }

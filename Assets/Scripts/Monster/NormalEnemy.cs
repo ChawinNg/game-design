@@ -18,10 +18,9 @@ public class NormalEnemy : Enemy
     {
         moveScript.ResetMove(); // Stop movement
         agent.ResetPath();
-        
-        if (weapon.CanPerformAttack())
-        {
+        if(weapon.CanPerformAttack(AttackType.Primary)){
             StartCoroutine(Attack());
-        } 
+        }
+        
     }
 }

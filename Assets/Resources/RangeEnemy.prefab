@@ -739,6 +739,7 @@ MonoBehaviour:
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: Player
+  canUpdateStat: 0
 --- !u!1 &6294844856616373266
 GameObject:
   m_ObjectHideFlags: 0

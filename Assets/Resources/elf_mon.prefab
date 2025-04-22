@@ -634,13 +634,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b516d049e3efbf04195f2f17352f6dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDistance: 0.5
-  attackInterval: 3
   maxHealth: 80
   goldDropAmount: 10
   healthBar: {fileID: 6729241140055340052}
   Visuals: {fileID: 4593255768948569558}
   weapon: {fileID: 1130846249436372513}
+  stopDistance: 0.5
 --- !u!1 &5386258280222527871
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,13 +733,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bde4240c6039ac4abcda05626ec456f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.25
+  cooldown: 3
   displayCooldown: 0
   hitbox: {fileID: 7293920697594274099}
   baseDamage: 5
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: Player
+  canUpdateStat: 0
 --- !u!1 &6294844856616373266
 GameObject:
   m_ObjectHideFlags: 0

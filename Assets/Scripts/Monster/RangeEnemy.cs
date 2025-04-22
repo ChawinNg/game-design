@@ -41,9 +41,11 @@ public class RangeEnemy : Enemy
         moveScript.ResetMove(); // Stop movement
         agent.ResetPath();
         
-        if (weapon.CanPerformAttack())
+        if (weapon.CanPerformAttack(AttackType.Secondary))
         {
             StartCoroutine(RangeAttack());
+            // RangeAttack();
+
         } 
     }
 }

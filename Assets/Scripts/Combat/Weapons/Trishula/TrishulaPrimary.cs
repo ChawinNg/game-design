@@ -17,6 +17,8 @@ public class TrishulaPrimary : AttackBase
 
     private Vector3 aimmingDirection;
 
+    public bool canUpdateStat = true;
+
     void Start()
     {
         hitboxTransform = hitbox.GetComponent<Transform>();
@@ -37,7 +39,7 @@ public class TrishulaPrimary : AttackBase
     }
     private void UpdateStat(string statName, float value)
     {
-        if (statName == nameof(AugmentStore.DamageModifier))
+        if (statName == nameof(AugmentStore.DamageModifier) && canUpdateStat)
         {
             baseDamage = 10f + 10f * value;
             Debug.Log("Updated Base Damage: " + baseDamage);
