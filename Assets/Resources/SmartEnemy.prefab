@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27243c45fb430b74c8c53f3826ce1d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 2
   displayCooldown: 0
   Throwable: {fileID: 5422448823268907183, guid: d380d0cbe006d9746ad03e124051dcad, type: 3}
   ThrowableSpeed: 7
@@ -323,9 +323,9 @@ GameObject:
   - component: {fileID: 3508478563407341888}
   - component: {fileID: 1455153250746213848}
   - component: {fileID: 1065672933609230306}
-  - component: {fileID: 2337690054280025770}
+  - component: {fileID: 5975790033063756020}
   m_Layer: 0
-  m_Name: elf_mon
+  m_Name: SmartEnemy
   m_TagString: HostileEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 1959512401, guid: 7465ef4f8274330419bdc1abe808b291, type: 3}
-  m_Color: {r: 0.54820216, g: 0.98490566, b: 0.59567153, a: 1}
+  m_Color: {r: 0.54901963, g: 0.7096963, b: 0.9843137, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -622,7 +622,7 @@ NavMeshAgent:
   m_BaseOffset: 0.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2337690054280025770
+--- !u!114 &5975790033063756020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -631,16 +631,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4593255768948569558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b516d049e3efbf04195f2f17352f6dc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 69516f553d6daf840859d13e5ab15044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 0.5
   attackInterval: 3
-  maxHealth: 80
-  goldDropAmount: 10
+  maxHealth: 200
+  goldDropAmount: 20
   healthBar: {fileID: 6729241140055340052}
   Visuals: {fileID: 4593255768948569558}
   weapon: {fileID: 1130846249436372513}
+  startRangeAttackDistance: 1.5
+  stopRangeAttackDistance: 6
 --- !u!1 &5386258280222527871
 GameObject:
   m_ObjectHideFlags: 0

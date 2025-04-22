@@ -4,63 +4,40 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour, IDamageable
+public abstract class Enemy : MonoBehaviour, IDamageable
 {
-    public Move moveScript;   // Reference to the Move script (to control movement)
-    public float stopDistance = 0.5f; // Minimum distance before stopping movement
-
-    public float startRangeAttackDistance = 3f; // Distance to start range attack
-    public float stopRangeAttackDistance = 8f; // Distance to start range attack
-
-    public float attackInterval = 3f;
-    public Animator animator;
-    // public UnityEvent<AttackType> OnAttack;
-
     public float maxHealth = 100f;
-
-    private float health;
-
-    private Vector2 directionToPlayer;  // Direction vector towards player
-    private GameObject player;  // Reference to the player's Transform (position)
-    public SpriteRenderer enemyRenderer; // For Boss
-
-    public AnimationEventHandler animationEventHandler;
-    public bool isBoss = false;
-    public FloatingHealthBar healthBar; // Reference to the health bar UI
-    NavMeshAgent agent; // Reference to the NavMeshAgent component
-
-    public Weapon weapon;
-
+    protected float health;
     public int goldDropAmount;
-
-    private bool isTakingDamage = false;
+    protected GameObject player;  // Reference to the player's Transform (position)
+    public FloatingHealthBar healthBar; // Reference to the health bar UI
+    public GameObject Visuals;
+    protected Animator animator;
+    protected SpriteRenderer enemyRenderer; // For Boss
+    protected AnimationEventHandler animationEventHandler;
+    protected NavMeshAgent agent; // Reference to the NavMeshAgent component
+    public Weapon weapon;
+    protected bool isTakingDamage = false;
+    protected Move moveScript;   // Reference to the Move script (to control movement)
+    protected Vector2 directionToPlayer;
+    protected float distanceToPlayer;
+    protected bool moveUp, moveDown, moveRight, moveLeft;
+    protected bool addedGold = false;
     void Start()
     {
-        if (animator == null)
-        {
-            animator = GetComponent<Animator>();
-        }
         health = maxHealth;
-        if (enemyRenderer == null)
-        {
-            enemyRenderer = GetComponent<SpriteRenderer>();
-        }
-        // Optionally, get references dynamically if not set in Inspector
-        if (player == null)
-        {
-            player = GameObject.FindWithTag("Player");
-        }
 
-        if (moveScript == null)
-        {
-            moveScript = GetComponent<Move>();
-        }
-        if (agent == null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-            agent.updateRotation = false; // Disable automatic rotation
-            agent.updateUpAxis = false; // Disable automatic up axis adjustment
-        }
+        enemyRenderer = Visuals.GetComponent<SpriteRenderer>();
+        animator = Visuals.GetComponent<Animator>();
+        animationEventHandler = Visuals.GetComponent<AnimationEventHandler>();
+
+        player = GameObject.FindWithTag("Player");
+
+        moveScript = GetComponent<Move>();
+        
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false; // Disable automatic rotation
+        agent.updateUpAxis = false; // Disable automatic up axis adjustment
     }
 
     void Update()
@@ -71,56 +48,17 @@ public class Enemy : MonoBehaviour, IDamageable
         directionToPlayer = (player.transform.position - transform.position).normalized;
 
         // Check the distance between the object and the player
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        // Determine movement direction
-        bool moveUp = directionToPlayer.y > 0.1f;
-        bool moveDown = directionToPlayer.y < -0.1f;
-        bool moveRight = directionToPlayer.x > 0.1f;
-        bool moveLeft = directionToPlayer.x < -0.1f;
+        CalMovementDir();
 
-        if (distanceToPlayer < stopDistance)
+        if (InAttackCondition())
         {
-            moveScript.ResetMove(); // Stop movement
-            agent.ResetPath();
-            
-        
-            if (weapon.CanPerformAttack())
-            {
-                StartCoroutine(Attack());
-            } 
-        }
-        else  if (distanceToPlayer > startRangeAttackDistance && distanceToPlayer < stopRangeAttackDistance)
-        {
-            moveScript.ResetMove(); // Stop movement
-            agent.ResetPath();
-
-            if (weapon.CanPerformAttack())
-            {
-                StartCoroutine(RangeAttack());
-            } 
+            PerformAttack();
         }
         else
         {  
-            if (isBoss){
-                if(!enemyRenderer.flipX && moveRight){
-                    enemyRenderer.flipX = true;
-                    Vector3 spriteLocalPosition = enemyRenderer.transform.localPosition;
-                    spriteLocalPosition.x = -spriteLocalPosition.x; 
-                    enemyRenderer.transform.localPosition = spriteLocalPosition;
-                }
-                else if(enemyRenderer.flipX && moveLeft){
-                    enemyRenderer.flipX = false;
-                    Vector3 spriteLocalPosition = enemyRenderer.transform.localPosition;
-                    spriteLocalPosition.x = -spriteLocalPosition.x; 
-                    enemyRenderer.transform.localPosition = spriteLocalPosition;
-                }
-                
-            }
-            moveScript.LookInDirection(moveUp, moveDown, moveLeft, moveRight);
-            // Move in the determined direction (supports diagonal movement)
-            agent.SetDestination(player.transform.position); // Set the destination to the player's position
-
+            Move();
         }
     }
 
@@ -131,7 +69,11 @@ public class Enemy : MonoBehaviour, IDamageable
         StartCoroutine(FlashRed());
         if (health <= 0)
         {
-            player.GetComponent<Player>().AddGold(goldDropAmount);
+            if(!addedGold)
+            {
+                player.GetComponent<Player>().AddGold(goldDropAmount);
+                addedGold = true;
+            }
             Destroy(gameObject);
         }
         else{
@@ -139,7 +81,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator FlashRed()
+    protected IEnumerator FlashRed()
     {
         animator.SetTrigger("Damage");
         enemyRenderer.material.color = Color.red;
@@ -148,15 +90,29 @@ public class Enemy : MonoBehaviour, IDamageable
         isTakingDamage = false;
     }
 
-    private IEnumerator Attack()
+    protected IEnumerator Attack()
     {
         animator.SetTrigger("Slash");
         yield return null;
     }
 
-    private IEnumerator RangeAttack()
+    protected IEnumerator RangeAttack()
     {
         animator.SetTrigger("Bow");
         yield return null;
     }
+
+    protected virtual void CalMovementDir(){
+        // Determine movement direction
+        moveUp = directionToPlayer.y > 0.1f;
+        moveDown = directionToPlayer.y < -0.1f;
+        moveRight = directionToPlayer.x > 0.1f;
+        moveLeft = directionToPlayer.x < -0.1f;
+    }
+
+    protected abstract void Move();
+    protected abstract bool InAttackCondition();
+
+    protected abstract void PerformAttack();
+
 }

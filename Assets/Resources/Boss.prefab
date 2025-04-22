@@ -31,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2960712062795453572}
-  - {fileID: 5809834944051372602}
   m_Father: {fileID: 3229081480874004024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &240555645466936090
@@ -80,6 +79,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3217242991443264416}
+  - {fileID: 5809834944051372602}
   m_Father: {fileID: 1813238795581669490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5154432222052738180
@@ -143,10 +143,10 @@ GameObject:
   - component: {fileID: 3229081480874004024}
   - component: {fileID: -3323236053317371591}
   - component: {fileID: 5709373413573504430}
-  - component: {fileID: -4919416624383699716}
   - component: {fileID: 2918887222319323170}
   - component: {fileID: 3149992387891054565}
   - component: {fileID: 4576787185897382927}
+  - component: {fileID: 3450109293874376782}
   m_Layer: 0
   m_Name: Boss
   m_TagString: HostileEnemy
@@ -245,31 +245,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-4919416624383699716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762074996817724240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c325cd9ef2aea6041b130e078b4cfc2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveScript: {fileID: 2918887222319323170}
-  stopDistance: 1.2
-  startRangeAttackDistance: 3
-  stopRangeAttackDistance: 8
-  attackInterval: 1.5
-  animator: {fileID: 60956738337191518}
-  maxHealth: 500
-  enemyRenderer: {fileID: 7362311627613563753}
-  animationEventHandler: {fileID: 9208582310219661496}
-  isBoss: 1
-  healthBar: {fileID: 2774295860634314734}
-  weapon: {fileID: 5154432222052738180}
-  goldDropAmount: 200
 --- !u!114 &2918887222319323170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +327,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3450109293874376782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762074996817724240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8b91c43169ec848858cbf113ece9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopDistance: 0.5
+  attackInterval: 3
+  maxHealth: 1000
+  goldDropAmount: 200
+  healthBar: {fileID: 2774295860634314734}
+  Visuals: {fileID: 6532375371776911554}
+  weapon: {fileID: 5154432222052738180}
+  startRangeAttackDistance: 1.5
+  stopRangeAttackDistance: 6
 --- !u!1 &3712582838533428180
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,11 +476,11 @@ Transform:
   m_GameObject: {fileID: 4486279595238983422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42566666, y: -0.126, z: 0}
+  m_LocalPosition: {x: 0.42566666, y: -0.12600002, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1813238795581669490}
+  m_Father: {fileID: 2960712062795453572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1879564505981546510
 MonoBehaviour:
