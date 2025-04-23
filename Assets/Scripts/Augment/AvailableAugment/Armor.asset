@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: Increase Armor
   iconSprite: {fileID: 1686139514, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  width: 0.48
+  height: 0.52
   description: Increase armor
   healthModifier: 1
   damageModifier: 0

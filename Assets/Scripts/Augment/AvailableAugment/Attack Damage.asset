@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: Attack Damage
   iconSprite: {fileID: 916386790, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  width: 1
+  height: 1
   description: Increase attack damage by 10%
   healthModifier: 0
   damageModifier: 1.1

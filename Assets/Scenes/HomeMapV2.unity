@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3cc04ebc8d45241b3cce4003e69da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: FightMap_Grass_1
+  nextScene: BossMap_1
   isShop: 0
 --- !u!1 &277226362
 GameObject:
@@ -3672,8 +3672,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: gold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: health
-      value: 1000
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
+      propertyPath: goldMult
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: healthBar
@@ -3681,7 +3689,7 @@ PrefabInstance:
       objectReference: {fileID: 1173119775}
     - target: {fileID: 6912715101802232726, guid: 103d19a1ab2640d45b46564a8829f7db, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

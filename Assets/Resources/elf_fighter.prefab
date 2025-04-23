@@ -671,22 +671,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnAttack:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3926392458269683897}
-        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
-        m_MethodName: PerformAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   PostAttack:
     m_PersistentCalls:
       m_Calls: []
+  Hitbox: {fileID: 0}
 --- !u!1 &3195592481336137090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,11 +1535,11 @@ MonoBehaviour:
   displayCooldown: 1
   hitbox: {fileID: 309404976105071836}
   transform: {fileID: 2989262492310327134}
-  baseDamage: 15
+  baseDamage: 10
   knockbackForce: 10
   knockbackTime: 0.5
   startDamageRate: 0.8
-  endDamageRate: 4
+  endDamageRate: 3
   attackabletag: HostileEnemy
   attackInterval: 0.75
   spinDuration: 5
@@ -1606,3 +1595,4 @@ MonoBehaviour:
   knockbackForce: 10
   knockbackTime: 0.1
   attackabletag: HostileEnemy
+  canUpdateStat: 1

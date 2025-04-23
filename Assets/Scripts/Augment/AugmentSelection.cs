@@ -46,12 +46,13 @@ public class AugmentSelection : MonoBehaviour
             }
         }
         foreach (var augment in chosenAugments)
-        {
+        {   
             GameObject buttonObj = Instantiate(augmentButtonPrefab, augmentContainer);
             buttonObj.GetComponentInChildren<TMP_Text>().text = augment.augmentName;
             var iconImage = buttonObj.transform.Find("Icon").GetComponent<Image>();
             iconImage.sprite = augment.iconSprite;
-            iconImage.SetNativeSize(); 
+            RectTransform rt = iconImage.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(100f * augment.width, 100f * augment.height);
             Debug.Log($"augmentName Type: {augment.augmentName.GetType()} - Value: {augment.augmentName}");
 
 
@@ -66,7 +67,8 @@ public class AugmentSelection : MonoBehaviour
         GameObject newSlot = Instantiate(augmentSlotPrefab, selectedAugmentsPanel);
         var iconImage = newSlot.transform.Find("Icon").GetComponentInChildren<Image>();
         iconImage.sprite = augment.iconSprite;
-        iconImage.SetNativeSize(); 
+        RectTransform rt = iconImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(144f * augment.width, 144f * augment.height);
         Time.timeScale = 1f; 
         AugmentSelectionUI.SetActive(false);
     }

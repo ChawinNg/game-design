@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: Movespeed
   iconSprite: {fileID: -2106020974, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  width: 0.61
+  height: 0.39
   description: Increase Movespeed
   healthModifier: 0
   damageModifier: 0
-  moveSpeedModifer: 4
+  moveSpeedModifer: 10
   dashCooldownModifier: 0
   armorModifier: 0
   attackSpeedModifier: 0

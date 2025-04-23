@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: Health
   iconSprite: {fileID: 1437865158, guid: 9aeb71ae11c32ee419fec2a6ceddf3e6, type: 3}
+  width: 0.8
+  height: 0.8
   description: Increase health
   healthModifier: 50
   damageModifier: 0

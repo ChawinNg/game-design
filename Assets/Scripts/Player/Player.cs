@@ -73,17 +73,19 @@ public class Player : MonoBehaviour, IDamageable
         switch (statName)
         {
             case nameof(AugmentStore.HealthModifier):
-                maxHealth = 100f + value;
+                maxHealth += value;
+                OnHealthChanged?.Invoke(health+value, maxHealth);
+
                 Debug.Log("Updated Health: " + maxHealth);
                 break;
 
             case nameof(AugmentStore.MoveSpeedModifier):
-                moveScript.moveSpeed = 2f + value;
+                moveScript.moveSpeed += value;
                 Debug.Log("Updated Move Speed: " + moveScript.moveSpeed);
                 break;
 
             case nameof(AugmentStore.ArmorModifier):
-                armor = 10 + (int)value;
+                armor += (int)value;
                 Debug.Log("Updated Armor: " + armor);
                 break;
 
@@ -109,6 +111,8 @@ public class Player : MonoBehaviour, IDamageable
 
             case "increase_max_hp":
                 maxHealth += value;
+                OnHealthChanged?.Invoke(health+value, maxHealth);
+                
                 Debug.Log("New Max Health: " + maxHealth);
                 break;
 
@@ -300,7 +304,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void AddGold(int amount)
     {
-        gold += amount * (int)Mathf.Floor(goldMult);
+        gold +=(int)Mathf.Floor((float)amount*goldMult);
         OnGoldChanged?.Invoke(gold);
         Debug.Log("Gold increased. Current gold: " + gold);
     }
